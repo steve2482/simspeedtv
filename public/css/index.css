@@ -1,0 +1,25 @@
+.box {
+	border: 1px solid black;
+}
+
+/*NAVBAR STYLING*/
+.navbar {
+  text-align: center;
+}
+
+.navbar ul {
+  padding: 0;
+}
+
+.navbar li {
+  display: inline;
+  margin: 10px;
+}
+
+.nav-buttons {
+  list-style-type: none;
+}
+
+/*SIDEBAR STYLING*/
+
+/*RESULTS WINDOW STYLING*/
