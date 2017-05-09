@@ -6,8 +6,8 @@ export default function Navbar() {
     <div className='navbar box'>
       <h3 className='title'><Link to='/'>SimSpeedTV</Link></h3>
       <ul className='nav-buttons'>
-        <li>Sign-In</li>
-        <li>Register</li>
+        <li><Link to='/sign-in'>Sign-In</Link></li>
+        <li><Link to='/register'>Register</Link></li>
       </ul>
     </div>
   );

@@ -2,6 +2,14 @@
 	border: 1px solid black;
 }
 
+a {
+  text-decoration: none;
+}
+
+li {
+  list-style-type: none;
+}
+
 /*NAVBAR STYLING*/
 .navbar {
   text-align: center;
@@ -14,10 +22,6 @@
 .navbar li {
   display: inline;
   margin: 10px;
-}
-
-.nav-buttons {
-  list-style-type: none;
 }
 
 /*SIDEBAR STYLING*/
@@ -33,6 +37,6 @@
   height: 500px;
 }
 
-.live-results {
+.live-results, .channel-results, .sign-in, .register {
   height: 500px;
 }
