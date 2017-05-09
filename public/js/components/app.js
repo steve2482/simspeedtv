@@ -6,15 +6,15 @@ import Sidebar from './sidebar';
 import LiveResults from './live-results';
 import ChannelResults from './channel-results';
 
-export default function App(props) {
+export default function App() {
   return (
     <Router>
-      <div className='application'>
+      <div className='layout'>
         <Navbar />
         <Sidebar />
         <main className='results-window'>
           <Route exact path='/' component={LiveResults} />
-          <Route exact path='/channel/:channelId' component={ChannelResults} />
+          <Route exact path='/channel' component={ChannelResults} />
         </main>
       </div>
     </Router>
