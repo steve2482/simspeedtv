@@ -27,16 +27,26 @@ li {
 /*SIDEBAR STYLING*/
 .sidebar {
   width: 15%;
-  height: 500px;
+  height: 900px;
   float: left;
 }
+
+#channel-list-header {
+  text-align: center;
+}
+
 /*RESULTS WINDOW STYLING*/
 .results-window {
   float: right;
   width: 84%;
-  height: 500px;
+  height: 900px;
 }
 
 .live-results, .channel-results, .sign-in, .register {
-  height: 500px;
+  text-align: center;
+  height: 900px;
+}
+
+#video-thumbnail {
+  margin: 20px;
 }

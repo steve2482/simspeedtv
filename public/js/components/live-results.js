@@ -1,9 +1,12 @@
 import React from 'react';
+import Video from './video';
 
 export default function LiveResults() {
-	return (
+  const videos = [<Video />, <Video />, <Video />, <Video />];
+  return (
 		<div className='live-results box'>
-			<p>Live Results</p>
+      <h3>Current Live Broadcasts</h3>
+			{videos}
 		</div>
-	);
+  );
 }

@@ -1,6 +1,8 @@
 export default {
   0: {
-    name: 'GSRC'
+    name: 'GSRC',
+    youtubeId: 'UC76vyQZnIIF7iA5ta24ukVw',
+    favorites: 0
   },
   1: {
     name: 'LSRTV'

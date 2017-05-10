@@ -1,5 +1,5 @@
 import React from 'react';
-import {BrowserRouter as Router, Route, Link} from 'react-router-dom';
+import {BrowserRouter as Router, Route, Link, hashHistory} from 'react-router-dom';
 
 import Navbar from './navbar';
 import Sidebar from './sidebar';
@@ -10,7 +10,7 @@ import Register from './register';
 
 export default function App() {
   return (
-    <Router>
+    <Router history={hashHistory}>
       <div className='layout'>
         <Navbar />
         <Sidebar />

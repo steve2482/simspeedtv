@@ -8,13 +8,13 @@ export default function Sidebar() {
     const channel = CHANNELS[channelId];
     return (
       <li key={index}>
-        <Channel name={channel.name} />
+        <Channel name={channel.name} id={channel.youtubeId} />
       </li>
     );
   });
   return (
     <div className='sidebar box'>
-      <h4>Channel List</h4>
+      <h4 id='channel-list-header'>Channel List</h4>
       <ul>
         {channels}
       </ul>      
