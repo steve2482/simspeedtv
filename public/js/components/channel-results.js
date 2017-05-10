@@ -1,9 +1,12 @@
 import React from 'react';
+import Video from './video';
 
 export default function ChannelResults() {
-	return (
+  const videos = [<Video />, <Video />, <Video />, <Video />];
+  return (
 		<div className='channel-results box'>
-			<p>Channel Results</p>
+			<h3>Channel Results</h3>
+      {videos}
 		</div>
 	);
 }
