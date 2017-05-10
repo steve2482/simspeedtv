@@ -8,7 +8,7 @@ export default function Sidebar() {
     const channel = CHANNELS[channelId];
     return (
       <li key={index}>
-        <Channel name={channel.name} id={channel.youtubeId} />
+        <Channel name={channel.abreviatedName} id={channel.youtubeId} />
       </li>
     );
   });
