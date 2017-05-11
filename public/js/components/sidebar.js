@@ -14,19 +14,17 @@ export class Sidebar extends React.Component {
     this.props.dispatch(
       actions.getChannelNames()
     );
-    console.log(this.props.state);
   }
 
   render() {
     const channels = this.props.state.channelNames.map((channelId, index) => {
-      const channel = this.props.state.channelNames[channelId];
+      const channel = this.props.state.channelNames[index];
       return (
         <li key={index}>
-          <Channel key={index} name={channel.abreviatedName} id={channel.youtubeId} />
+          <Channel key={index} name={channel} />
         </li>
       );
     });
-
     return (
       <div className='sidebar box'>
         <h4 id='channel-list-header'>Channel List</h4>

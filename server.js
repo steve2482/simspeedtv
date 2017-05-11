@@ -12,13 +12,12 @@ const {Channel} = require('./models/channel');
 
 // get channel names
 app.get('/channel-names', (req, res) => {
-  Channel.find()
+  Channel.find().sort({'abreviatedName': 1})
   .then(data => {
     const channelNames = [];
     for (let i = 0; i < data.length; i++) {
       channelNames.push(data[i].abreviatedName);
     }
-    console.log(channelNames);
     res.status(200).json(channelNames);
   });
 });

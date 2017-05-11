@@ -11,12 +11,10 @@ export const getChannelNames = () => dispatch => {
       const error = new Error('Something went wrong while fetching channel names');
       console.log(error);
     }
-    console.log(response);
     return response;
   })
   .then(response => response.json())
   .then(data => {
-    console.log(data);
     dispatch(fetchChannelNames(data));
   })
   .catch(error => console.log(error));
