@@ -1,7 +1,9 @@
 const express = require('express');
 const app = express();
+const cors = require('cors');
 
 app.use(express.static('public'));
+app.use(cors());
 
 const mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
@@ -11,9 +13,14 @@ const {Channel} = require('./models/channel');
 // get channel names
 app.get('/channel-names', (req, res) => {
   Channel.find()
-  .then(data =>
-    res.status(200).json(data)
-    );
+  .then(data => {
+    const channelNames = [];
+    for (let i = 0; i < data.length; i++) {
+      channelNames.push(data[i].abreviatedName);
+    }
+    console.log(channelNames);
+    res.status(200).json(channelNames);
+  });
 });
 
 // Start Server
@@ -31,7 +38,6 @@ function runServer(databaseUrl=DATABASE_URL, port=PORT) {
         resolve();
       })
       .on('error', err => {
-        console.log(err);
         mongoose.disconnect();
         reject(err);
       });
@@ -53,6 +59,10 @@ function closeServer() {
     });
   });
 }
+
+if (require.main === module) {
+  runServer().catch(err => console.error(err));
+};
 
 // export for testing
 module.exports = {app, runServer, closeServer};
