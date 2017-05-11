@@ -1,55 +1,98 @@
 export default {
   0: {
-    name: 'GSRC',
-    youtubeId: 'UC76vyQZnIIF7iA5ta24ukVw',
-    favorites: 0
+  abreviatedName: 'GSRC',
+  name: 'Global SimRacing Channel',
+  youtubeId: 'UC76vyQZnIIF7iA5ta24ukVw',
+  favorites: 0
   },
   1: {
-    name: 'LSRTV'
+    abreviatedName: 'LSRTV',
+    name: 'Live SimRacing TV',
+    youtubeId: 'UCipmH2g_R0igpvmUkoYJfoA',
+    favorites: 0
   },
   2: {
-    name: 'RaceSpotTV'
+    abreviatedName: 'RaceSpot',
+    name: 'RaceSpotTV',
+    youtubeId: 'UCyhYD5vb-N_0TJZMVegCVgw',
+    favorites: 0
   },
   3: {
-    name: 'ApexRacingTV'
+    abreviatedName: 'ApexRacingTV',
+    name: 'ApexRacing TV',
+    youtubeId: 'UC3WV0kPwE7Llk7y7KyWpNug',
+    favorites: 0
   },
   4: {
-    name: 'GripTV'
+    abreviatedName: 'GripTV',
+    name: 'GripTV Live',
+    youtubeId: 'UCP-e-TM5GpgVSjUhvSFpuZg',
+    favorites: 0
   },
   5: {
-    name: 'Digital Forge Broadcasting Network'
+    abreviatedName: 'Digital Forge',
+    name: 'Digital Forge Broadcasting Network',
+    youtubeId: 'UC8WlmtLCOvUnrnfuwFltXrw',
+    favorites: 0
   },
   6: {
-    name: 'MaxSpeedTV'
+    abreviatedName: 'MaxSpeedTV',
+    name: 'MaxSpeedTV',
+    youtubeId: 'UCKe9FdVzYpvnajTYCNHComA',
+    favorites: 0
   },
   7: {
-    name: 'MaxSpeedTV2'
+    abreviatedName: 'MaxSpeedTV2',
+    name: 'MaxSpeedTV2',
+    youtubeId: 'UCzNISbby9k0bB2SvKc3OrLQ',
+    favorites: 0
   },
   8: {
-    name: 'RaceAcademy Live TV'
+    abreviatedName: 'RaceAcademy',
+    name: 'RaceAcademy Live TV',
+    youtubeId: 'UCUXMbfPUOtTIZRtGdpULFvw',
+    favorites: 0
   },
   9: {
-    name: 'Prime Time Racing TV'
+    abreviatedName: 'Prime Time Racing',
+    name: 'Prime Time Racing TV',
+    youtubeId: 'UCyTRI1iEhNeTTO6FDkeut3w',
+    favorites: 0
   },
   10: {
-    name: 'Non-StopRacing TV'
+    abreviatedName: 'Non-StopRacing',
+    name: 'Non-StopRacing TV',
+    youtubeId: 'UCMQA-3PIHwr6NJKXpkx6BzQ',
+    favorites: 0
   },
   11: {
-    name: 'OSRNetwork'
+    abreviatedName: 'OSRN',
+    name: 'Online SimRacing Network',
+    youtubeId: 'UCI_mGEX1dumdMsy-ew-_FkA',
+    favorites: 0
   },
   12: {
-    name: 'Formula SimRacing'
+    abreviatedName: 'Formula SimRacing',
+    name: 'Formula SimRacing',
+    youtubeId: 'UCb6FnVVxTQVm5QdxCxYMV2g',
+    favorites: 0
   },
   13: {
-    name: 'RRTV'
+    abreviatedName: 'RRTV',
+    name: 'RRTV',
+    youtubeId: 'UCTcz_Na2BWwtp9pHd5cYDGA',
+    favorites: 0
   },
   14: {
-    name: 'v8sonline'
+    abreviatedName: 'v8sonline',
+    name: 'V8sonilne',
+    youtubeId: 'UCM6hpzaXiYP48MaUbAcvQkw',
+    favorites: 0
   },
   15: {
-    name: 'Checkered Flag Interactive'
-  },
-  16: {
-    name: 'ORC TV'
+    abreviatedName: 'CFI',
+    name: 'Checkerd Flag Interactive',
+    youtubeId: 'UCppm6ASu9nj9EF8UP94ktGA',
+    favorites: 0
   }
 };
