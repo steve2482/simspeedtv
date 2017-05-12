@@ -29,22 +29,42 @@ app.get('/channel-names', (req, res) => {
 
 // get current live feeds
 app.get('/live', (req, res) => {
-  let apiKey = process.env.YOUTUBE_API_KEY;  
-  let channelId = 'UC76vyQZnIIF7iA5ta24ukVw';
-  fetch(`https://www.googleapis.com/youtube/v3/search?part=snippet&channelId=${channelId}&eventType=live&type=video&key=${apiKey}`)
-  .then(response => {
-    if (!response.ok) {
-      const error = new Error(response.statusText);
-      error.response = response;
-      throw error;
+  Channel.find()
+  .then(data => {
+    let apiKey = process.env.YOUTUBE_API_KEY;
+    const urls = [];
+    for (let i = 0; i < data.length; i++) {
+      urls.push(`https://www.googleapis.com/youtube/v3/search?part=snippet&channelId=${data[i].youtubeId}&eventType=live&type=video&key=${apiKey}`);
     }
-    return response.json();
+    Promise.all(
+      urls.map(urls => fetch(urls))
+    )
+    .then(response => Promise.all(response.map(response => response.json())))
+    .then(response => res.json(response));
   })
-  .then(response => res.json(response))
   .catch(err => {
-    console.log('Error:', err);
+    console.log(err);
   });
 });
+
+// CURRENT CODE FOR ONE CHANNEL
+// app.get('/live', (req, res) => {
+//   let apiKey = process.env.YOUTUBE_API_KEY;  
+//   let channelId = 'UC76vyQZnIIF7iA5ta24ukVw';
+//   fetch(`https://www.googleapis.com/youtube/v3/search?part=snippet&channelId=${channelId}&eventType=live&type=video&key=${apiKey}`)
+//   .then(response => {
+//     if (!response.ok) {
+//       const error = new Error(response.statusText);
+//       error.response = response;
+//       throw error;
+//     }
+//     return response.json();
+//   })
+//   .then(response => res.json(response))
+//   .catch(err => {
+//     console.log('Error:', err);
+//   });
+// });
 
 // Start Server
 let server;
