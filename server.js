@@ -1,6 +1,11 @@
 const express = require('express');
 const app = express();
 const cors = require('cors');
+const fetch = require('isomorphic-fetch');
+
+if (process.env.NODE_ENV !== 'production') {
+  require('dotenv').config();
+}
 
 app.use(express.static('public'));
 app.use(cors());
@@ -19,6 +24,43 @@ app.get('/channel-names', (req, res) => {
       channelNames.push(data[i].abreviatedName);
     }
     res.status(200).json(channelNames);
+  });
+});
+
+// get current live feeds
+app.get('/live', (req, res) => {
+  Channel.find()
+  .then(data => {
+    let apiKey = process.env.YOUTUBE_API_KEY;
+    const urls = [];
+    for (let i = 0; i < data.length; i++) {
+      urls.push(`https://www.googleapis.com/youtube/v3/search?part=snippet&channelId=${data[i].youtubeId}&eventType=live&type=video&key=${apiKey}`);
+    }
+    Promise.all(
+      urls.map(urls => fetch(urls))
+    )
+    .then(response => Promise.all(response.map(response => response.json())))
+    .then(response => res.json(response));
+  })
+  .catch(err => {
+    console.log(err);
+  });
+});
+
+// Get Single Channel Results
+app.get('/channel-videos', (req, res) => {
+  Channel.find({abreviatedName: 'GSRC'})//GSRC placeholder till code verified working
+  .then(data => {
+    console.log(data[0].youtubeId);
+    let apiKey = process.env.YOUTUBE_API_KEY;
+    let channelId = data[0].youtubeId;
+    fetch(`https://www.googleapis.com/youtube/v3/search?part=snippet&channelId=${channelId}&key=${apiKey}`);
+  })
+  .then(response => {
+    res.json(response);
+  })
+  .catch(err => {
+    console.log(err);
   });
 });
 

@@ -1,12 +1,11 @@
 import React from 'react';
 import Video from './video';
 
-export default function ChannelResults() {
-  const videos = [<Video />, <Video />, <Video />, <Video />];
+export default function ChannelResults(props) {
+  const channelName = props.match.params.channelName;
   return (
 		<div className='channel-results box'>
-			<h3>Channel Results</h3>
-      {videos}
+			<h3>{channelName}</h3>
 		</div>
 	);
 }
