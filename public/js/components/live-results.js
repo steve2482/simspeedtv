@@ -16,27 +16,43 @@ export class LiveResults extends React.Component {
 	}
 
   render() {
-    console.log(this.props.state.liveBroadcasts);
-
-    // Check if any results, if none, display message to instruct user to select a channel
-    let message = 'Choose a live broadcast or choose your favorite channel from the channel guide.' 
-    for (let i = 0; i < this.props.state.liveBroadcasts.length; i++) {
-      let numberOfBroadcasts = 0;
+    let message = 'Choose a live broadcast or choose your favorite channel from the channel guide.'
+    let numberOfBroadcasts = 0;
+    let broadcasts = null;
+    // Check if any live broadcasts, if none, display message to instruct user to select a channel
+    for (let i = 0; i < this.props.state.liveBroadcasts.length; i++) {      
       if (this.props.state.liveBroadcasts[i].items.length > 0) {
         numberOfBroadcasts++;
       }
-      if (numberOfBroadcasts === 0) {
-        message = 'There are currently no races being broadcast live. Choose a channel from the channel guide to see previously broadcast races.';
-      }
     }
-
+    if (numberOfBroadcasts === 0) {
+        message = 'There are currently no races being broadcast live. Choose a channel from the channel guide to see previously broadcast races.';
+    } else {
+      // If there are current live broadcasts, filter them out
+      const currentLiveBroadcasts = this.props.state.liveBroadcasts.filter((broadcast) => {
+         return broadcast.items.length > 0;
+      });
+      let broadcasts = currentLiveBroadcasts.map((broadcast, index) => {
+        const broadcastInfo = currentLiveBroadcasts[index];
+        return (
+          <Video key={index} info={broadcastInfo} />
+        );        
+      });
+      return (
+      <div className='live-results box'>
+        <h3>Current Live Broadcasts</h3>
+        <p className='message'>{message}</p>
+        {broadcasts}
+      </div>
+    );     
+    }
     return (
       <div className='live-results box'>
         <h3>Current Live Broadcasts</h3>
         <p className='message'>{message}</p>
-        <Video />
+        {broadcasts}
       </div>
-    );
+    );    
   }  
 }
 

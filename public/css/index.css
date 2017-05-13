@@ -47,6 +47,17 @@ li {
   height: 900px;
 }
 
+#video-info {
+  width: 360px;
+  margin: auto;
+}
+
+#video-title, #channel-title {
+  width: 320px;
+  text-align: center;
+  margin: auto;
+}
+
 #video-thumbnail {
   margin: 20px;
 }
