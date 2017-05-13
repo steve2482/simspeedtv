@@ -47,24 +47,22 @@ app.get('/live', (req, res) => {
   });
 });
 
-// CURRENT CODE FOR ONE CHANNEL
-// app.get('/live', (req, res) => {
-//   let apiKey = process.env.YOUTUBE_API_KEY;  
-//   let channelId = 'UC76vyQZnIIF7iA5ta24ukVw';
-//   fetch(`https://www.googleapis.com/youtube/v3/search?part=snippet&channelId=${channelId}&eventType=live&type=video&key=${apiKey}`)
-//   .then(response => {
-//     if (!response.ok) {
-//       const error = new Error(response.statusText);
-//       error.response = response;
-//       throw error;
-//     }
-//     return response.json();
-//   })
-//   .then(response => res.json(response))
-//   .catch(err => {
-//     console.log('Error:', err);
-//   });
-// });
+// Get Single Channel Results
+app.get('/channel-videos', (req, res) => {
+  Channel.find({abreviatedName: 'GSRC'})//GSRC placeholder till code verified working
+  .then(data => {
+    console.log(data[0].youtubeId);
+    let apiKey = process.env.YOUTUBE_API_KEY;
+    let channelId = data[0].youtubeId;
+    fetch(`https://www.googleapis.com/youtube/v3/search?part=snippet&channelId=${channelId}&key=${apiKey}`);
+  })
+  .then(response => {
+    res.json(response);
+  })
+  .catch(err => {
+    console.log(err);
+  });
+});
 
 // Start Server
 let server;
