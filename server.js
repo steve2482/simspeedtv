@@ -48,16 +48,19 @@ app.get('/live', (req, res) => {
 });
 
 // Get Single Channel Results
-app.get('/channel-videos', (req, res) => {
+app.post('/channel-videos', (req, res) => {
   Channel.find({abreviatedName: 'GSRC'})//GSRC placeholder till code verified working
   .then(data => {
-    console.log(data[0].youtubeId);
     let apiKey = process.env.YOUTUBE_API_KEY;
     let channelId = data[0].youtubeId;
-    fetch(`https://www.googleapis.com/youtube/v3/search?part=snippet&channelId=${channelId}&key=${apiKey}`);
-  })
-  .then(response => {
-    res.json(response);
+    let url = `https://www.googleapis.com/youtube/v3/search?part=snippet&channelId=${channelId}&order=date&key=${apiKey}`;
+    let request = new Request(url, {
+      method: 'GET',
+      headers: new Headers()
+    });
+    return fetch(request)
+    .then(response => response.json())
+    .then(response => res.json(response));
   })
   .catch(err => {
     console.log(err);

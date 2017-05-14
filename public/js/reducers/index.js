@@ -4,17 +4,25 @@ import store from '../store';
 
 const appState = {
   channelNames: [],
-  liveBroadcasts: []
+  liveBroadcasts: [],
+  channelVideos: []
 };
 
-export const channelNamesReducer = (state=appState, action) => {
+export const simSpeedReducer = (state=appState, action) => {
+  // Channel Names Reducer
   if (action.type === actions.FETCH_CHANNEL_NAMES) {
     const newAppState = update(state, {channelNames: {$set: action.names}});
     return newAppState;
   }
+  // Live Broadcasts Reducer
   if (action.type === actions.FETCH_LIVE_BROADCASTS) {
-  	const newAppState = update(state, {liveBroadcasts: {$set: action.broadcasts}});
-  	return newAppState;
+    const newAppState = update(state, {liveBroadcasts: {$set: action.broadcasts}});
+    return newAppState;
+  }
+  // Channel Videos Reducer
+  if (action.type === actions.FETCH_CHANNEL_BROADCASTS) {
+    const newAppState = update(state, {channelVideos: {$set: action.broadcasts}});
+    return newAppState;
   }
   return state;
 };

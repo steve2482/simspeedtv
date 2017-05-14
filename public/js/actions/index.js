@@ -45,3 +45,33 @@ export const getLiveBroadcasts = () => dispatch => {
   })
   .catch(error => console.log(error));
 }
+
+// Fetch Channel Broadcasts
+export const FETCH_CHANNEL_BROADCASTS = 'FETCH_CHANNEL_BROADCASTS';
+export const fetchChannelBroadcasts = broadcasts => ({
+  type: FETCH_CHANNEL_BROADCASTS,
+  broadcasts
+});
+
+// Get Channel Videos for Channel Page
+export const getChannelBroadcasts = (channelName) => dispatch => {
+  const url = 'http://localhost:3000/channel-videos';
+  const request = new Request(url, {
+    method: 'POST',
+    body: channelName,
+    headers: new Headers()
+  });
+  return fetch(request)
+  .then(response => {
+    if (!response.ok) {
+      const error = new Error('Something went wrong while fetching channel videos');
+      console.log(error);
+    }
+    return response;
+  })
+  .then(response => response.json())
+  .then(data => {
+    dispatch(fetchChannelBroadcasts(data));
+  })
+  .catch(error => console.log(error));
+}
