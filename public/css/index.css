@@ -45,11 +45,17 @@ li {
 .live-results, .channel-results, .sign-in, .register {
   text-align: center;
   height: 900px;
+  overflow: auto;
+}
+
+.video-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 #video-info {
   width: 360px;
-  margin: auto;
 }
 
 #video-title, #channel-title {

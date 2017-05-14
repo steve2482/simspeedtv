@@ -10,6 +10,7 @@ export class ChannelResults extends React.Component {
   }
 
   componentDidMount() {
+    console.log(this.props.match.params.channelName);
     this.props.dispatch(
       actions.getChannelBroadcasts(this.props.match.params.channelName)
     );
@@ -18,13 +19,31 @@ export class ChannelResults extends React.Component {
   render() {
     const channelName = this.props.match.params.channelName;
     console.log(this.props.state.channelVideos);
+    if (this.props.state.channelVideos.length === 0) {
+      const message = 'Getting channel\'s past broadcasts.'
+      return (
+        <div className='channel-results box'>
+          <h3>{channelName}</h3>
+          <p>{message}</p>
+        </div>
+      );
+    } else {
+      const videos = this.props.state.channelVideos.items.map((eachVideo, index) => {
+      const video = eachVideo;
+      return (
+        <Video key={index} info={video}/>
+      );
+      });    
 
-    return (
-  		<div className='channel-results box'>
-  			<h3>{channelName}</h3>
-        <Video info={this.props.state.channelVideos} />
-  		</div>
-  	);
+      return (
+        <div className='channel-results box'>
+          <h3>{channelName}</h3>
+          <div className='video-container'>
+          {videos}
+          </div>
+        </div>
+      );
+    }   
   }
 }
 
