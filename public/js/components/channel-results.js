@@ -29,18 +29,16 @@ export class ChannelResults extends React.Component {
   }
 
   render() {
-    console.log(this.props.state);
     const channelName = this.props.match.params.channelName;
-    if (this.props.state.channelVideos.length === 0) {
-      const message = 'Getting channel\'s past broadcasts.'
-      return (
-        <div className='channel-results box'>
-          <h3>{channelName}</h3>
-          <p>{message}</p>
-        </div>
-      );
-    } else {
-      console.log(this.props.state.channelVideos);
+    // if (this.props.state.channelVideos.length === 0) {
+    //   const message = 'Getting channel\'s past broadcasts.'
+    //   return (
+    //     <div className='channel-results box'>
+    //       <h3>{channelName}</h3>
+    //       <p>{message}</p>
+    //     </div>
+    //   );
+    // } else {
       const videos = this.props.state.channelVideos.map((eachVideo, index) => {
       const video = eachVideo;
       return (
@@ -57,7 +55,7 @@ export class ChannelResults extends React.Component {
           <button onClick={this.loadMoreVideoResults} id='load-more button'>Load More</button>
         </div>
       );
-    }   
+    // }   
   }
 }
 

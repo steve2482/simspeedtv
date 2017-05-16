@@ -22,14 +22,25 @@ export const simSpeedReducer = (state=appState, action) => {
   }
   // Channel Videos Reducer
   if (action.type === actions.FETCH_CHANNEL_BROADCASTS) {
-    let currentChannelBroadcasts = state.channelVideos;
-    action.broadcasts.forEach(broadcast => {
-      currentChannelBroadcasts.push(broadcast);
-    });
-    console.log(currentChannelBroadcasts);
-    const newAppState = update(state, {channelVideos: {$set: currentChannelBroadcasts}});
-    console.log(newAppState);
-    return newAppState;
+    let currentChannelBroadcasts = JSON.parse(JSON.stringify(state.channelVideos));
+    // console.log('current channel video state: ', currentChannelBroadcasts[0]);
+    // console.log('new channel videos: ', action.broadcasts[0].snippet);
+    if(currentChannelBroadcasts[0] === undefined || currentChannelBroadcasts[0].snippet.channelId !== action.broadcasts[0].snippet.channelId) {
+      console.log('channels no not match');
+      let currentChannelBroadcasts = [];
+      action.broadcasts.forEach(broadcast => {
+        currentChannelBroadcasts.push(broadcast);
+      });
+      const newAppState = update(state, {channelVideos: {$set: currentChannelBroadcasts}});
+      return newAppState;
+    } else {
+      console.log('same channel');
+      action.broadcasts.forEach(broadcast => {
+        currentChannelBroadcasts.push(broadcast);
+      });
+      const newAppState = update(state, {channelVideos: {$set: currentChannelBroadcasts}});
+      return newAppState;
+    }
   }
   // Set nextPageToken
   if (action.type === actions.SET_NEXT_PAGE_TOKEN) {
