@@ -45,3 +45,47 @@ export const getLiveBroadcasts = () => dispatch => {
   })
   .catch(error => console.log(error));
 }
+
+// Fetch Channel Broadcasts
+export const FETCH_CHANNEL_BROADCASTS = 'FETCH_CHANNEL_BROADCASTS';
+export const fetchChannelBroadcasts = broadcasts => ({
+  type: FETCH_CHANNEL_BROADCASTS,
+  broadcasts
+});
+
+// Get Channel Videos for Channel Page
+export const getChannelBroadcasts = (channelName, nextPageToken) => dispatch => {
+  const url = 'http://localhost:3000/channel-videos';
+  const payload = JSON.stringify({
+    channelName: channelName,
+    nextPageToken: nextPageToken
+  });
+  const request = new Request(url, {
+    method: 'POST',
+    body: payload,
+    headers: {
+      "Content-Type": "application/json"
+    }
+  });
+  return fetch(request)
+  .then(response => {
+    if (!response.ok) {
+      const error = new Error('Something went wrong while fetching channel videos');
+      console.log(error);
+    }
+    return response;
+  })
+  .then(response => response.json())
+  .then(data => {
+    dispatch(setNextPageToken(data.nextPageToken));
+    dispatch(fetchChannelBroadcasts(data.items));
+  })
+  .catch(error => console.log(error));
+}
+
+// Set nextPageToken
+export const SET_NEXT_PAGE_TOKEN = 'SET_NEXT_PAGE_TOKEN';
+export const setNextPageToken = nextPageToken => ({
+  type: SET_NEXT_PAGE_TOKEN,
+  nextPageToken
+});

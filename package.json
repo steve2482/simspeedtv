@@ -65,6 +65,7 @@
     "webpack": "^1.13.1"
   },
   "dependencies": {
+    "body-parser": "^1.17.1",
     "cors": "^2.8.3",
     "immutability-helper": "^2.2.0",
     "isomorphic-fetch": "^2.2.1",
