@@ -56,10 +56,15 @@ export const fetchChannelBroadcasts = broadcasts => ({
 // Get Channel Videos for Channel Page
 export const getChannelBroadcasts = (channelName) => dispatch => {
   const url = 'http://localhost:3000/channel-videos';
+  const payload = JSON.stringify({
+    channelName: channelName
+  })
   const request = new Request(url, {
     method: 'POST',
-    body: channelName,
-    headers: new Headers()
+    body: payload,
+    headers: {
+      "Content-Type": "application/json"
+    }
   });
   return fetch(request)
   .then(response => {

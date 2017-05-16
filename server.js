@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 const cors = require('cors');
 const fetch = require('isomorphic-fetch');
+const bodyParser = require('body-parser');
 
 if (process.env.NODE_ENV !== 'production') {
   require('dotenv').config();
@@ -9,6 +10,8 @@ if (process.env.NODE_ENV !== 'production') {
 
 app.use(express.static('public'));
 app.use(cors());
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: false}));
 
 const mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
@@ -49,11 +52,12 @@ app.get('/live', (req, res) => {
 
 // Get Single Channel Results
 app.post('/channel-videos', (req, res) => {
-  Channel.find({abreviatedName: 'GSRC'})//GSRC placeholder till code verified working
+  console.log(req.body);
+  Channel.find({abreviatedName: req.body.channelName})
   .then(data => {
     let apiKey = process.env.YOUTUBE_API_KEY;
     let channelId = data[0].youtubeId;
-    let url = `https://www.googleapis.com/youtube/v3/search?part=snippet&channelId=${channelId}&order=date&maxResults=50&key=${apiKey}`;
+    let url = `https://www.googleapis.com/youtube/v3/search?part=snippet&channelId=${channelId}&order=date&maxResults=12&key=${apiKey}`;
     let request = new Request(url, {
       method: 'GET',
       headers: new Headers()

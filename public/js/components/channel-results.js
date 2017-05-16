@@ -10,14 +10,26 @@ export class ChannelResults extends React.Component {
   }
 
   componentDidMount() {
-    console.log(this.props.match.params.channelName);
     this.props.dispatch(
       actions.getChannelBroadcasts(this.props.match.params.channelName)
     );
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.match.params.channelName !== this.props.match.params.channelName) {
+      this.props.dispatch(
+        actions.getChannelBroadcasts(nextProps.match.params.channelName));
+    }
+  }
+
+  loadMoreVideoResults(e) {
+    e.preventDefault();
+    this.props.dispatch(actions.getMoreChannelBroadcasts(next.match.params.channelName));
+  }
+
   render() {
     const channelName = this.props.match.params.channelName;
+    console.log(channelName);
     console.log(this.props.state.channelVideos);
     if (this.props.state.channelVideos.length === 0) {
       const message = 'Getting channel\'s past broadcasts.'
@@ -41,6 +53,7 @@ export class ChannelResults extends React.Component {
           <div className='video-container'>
           {videos}
           </div>
+          <button id='load-more button'>Load More</button>
         </div>
       );
     }   
