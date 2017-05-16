@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function Video(props) {  
+export default function Video(props) {
   let video = props.info;
   let src = `https://www.youtube.com/embed/${video.id.videoId}`;
   return (

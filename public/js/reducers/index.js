@@ -5,7 +5,8 @@ import store from '../store';
 const appState = {
   channelNames: [],
   liveBroadcasts: [],
-  channelVideos: []
+  channelVideos: [],
+  nextPageToken: null
 };
 
 export const simSpeedReducer = (state=appState, action) => {
@@ -21,7 +22,18 @@ export const simSpeedReducer = (state=appState, action) => {
   }
   // Channel Videos Reducer
   if (action.type === actions.FETCH_CHANNEL_BROADCASTS) {
-    const newAppState = update(state, {channelVideos: {$set: action.broadcasts}});
+    let currentChannelBroadcasts = state.channelVideos;
+    action.broadcasts.forEach(broadcast => {
+      currentChannelBroadcasts.push(broadcast);
+    });
+    console.log(currentChannelBroadcasts);
+    const newAppState = update(state, {channelVideos: {$set: currentChannelBroadcasts}});
+    console.log(newAppState);
+    return newAppState;
+  }
+  // Set nextPageToken
+  if (action.type === actions.SET_NEXT_PAGE_TOKEN) {
+    const newAppState = update(state, {nextPageToken: {$set: action.nextPageToken}});
     return newAppState;
   }
   return state;

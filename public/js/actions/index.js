@@ -54,11 +54,12 @@ export const fetchChannelBroadcasts = broadcasts => ({
 });
 
 // Get Channel Videos for Channel Page
-export const getChannelBroadcasts = (channelName) => dispatch => {
+export const getChannelBroadcasts = (channelName, nextPageToken) => dispatch => {
   const url = 'http://localhost:3000/channel-videos';
   const payload = JSON.stringify({
-    channelName: channelName
-  })
+    channelName: channelName,
+    nextPageToken: nextPageToken
+  });
   const request = new Request(url, {
     method: 'POST',
     body: payload,
@@ -76,7 +77,15 @@ export const getChannelBroadcasts = (channelName) => dispatch => {
   })
   .then(response => response.json())
   .then(data => {
-    dispatch(fetchChannelBroadcasts(data));
+    dispatch(setNextPageToken(data.nextPageToken));
+    dispatch(fetchChannelBroadcasts(data.items));
   })
   .catch(error => console.log(error));
 }
+
+// Set nextPageToken
+export const SET_NEXT_PAGE_TOKEN = 'SET_NEXT_PAGE_TOKEN';
+export const setNextPageToken = nextPageToken => ({
+  type: SET_NEXT_PAGE_TOKEN,
+  nextPageToken
+});

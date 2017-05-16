@@ -7,6 +7,7 @@ import {connect} from 'react-redux';
 export class ChannelResults extends React.Component {
   constructor(props) {
     super(props);
+    this.loadMoreVideoResults = this.loadMoreVideoResults.bind(this);
   }
 
   componentDidMount() {
@@ -24,13 +25,12 @@ export class ChannelResults extends React.Component {
 
   loadMoreVideoResults(e) {
     e.preventDefault();
-    this.props.dispatch(actions.getMoreChannelBroadcasts(next.match.params.channelName));
+    this.props.dispatch(actions.getChannelBroadcasts(this.props.match.params.channelName, this.props.state.nextPageToken));
   }
 
   render() {
+    console.log(this.props.state);
     const channelName = this.props.match.params.channelName;
-    console.log(channelName);
-    console.log(this.props.state.channelVideos);
     if (this.props.state.channelVideos.length === 0) {
       const message = 'Getting channel\'s past broadcasts.'
       return (
@@ -40,7 +40,8 @@ export class ChannelResults extends React.Component {
         </div>
       );
     } else {
-      const videos = this.props.state.channelVideos.items.map((eachVideo, index) => {
+      console.log(this.props.state.channelVideos);
+      const videos = this.props.state.channelVideos.map((eachVideo, index) => {
       const video = eachVideo;
       return (
         <Video key={index} info={video}/>
@@ -53,7 +54,7 @@ export class ChannelResults extends React.Component {
           <div className='video-container'>
           {videos}
           </div>
-          <button id='load-more button'>Load More</button>
+          <button onClick={this.loadMoreVideoResults} id='load-more button'>Load More</button>
         </div>
       );
     }   
