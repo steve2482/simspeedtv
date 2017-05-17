@@ -1,0 +1,69 @@
+.box {
+	border: 1px solid black;
+}
+
+a {
+  text-decoration: none;
+}
+
+li {
+  list-style-type: none;
+}
+
+/*NAVBAR STYLING*/
+.navbar {
+  text-align: center;
+}
+
+.navbar ul {
+  padding: 0;
+}
+
+.navbar li {
+  display: inline;
+  margin: 10px;
+}
+
+/*SIDEBAR STYLING*/
+.sidebar {
+  width: 15%;
+  height: 900px;
+  float: left;
+}
+
+#channel-list-header {
+  text-align: center;
+}
+
+/*RESULTS WINDOW STYLING*/
+.results-window {
+  float: right;
+  width: 84%;
+  height: 900px;
+}
+
+.live-results, .channel-results, .sign-in, .register {
+  text-align: center;
+  height: 900px;
+  overflow: auto;
+}
+
+.video-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+#video-info {
+  width: 360px;
+}
+
+#video-title, #channel-title {
+  width: 320px;
+  text-align: center;
+  margin: auto;
+}
+
+#video-thumbnail {
+  margin: 20px;
+}

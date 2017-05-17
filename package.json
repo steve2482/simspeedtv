@@ -5,7 +5,8 @@
   "main": "public/js/index.js",
   "scripts": {
     "start": "http-server -c-1 build",
-    "dev": "run-p watch serve",
+    "start_server": "nodemon server.js",
+    "dev": "run-p watch serve start_server",
     "test": "mocha --recursive --compilers js:babel-core/register",
     "build": "run-s build:*",
     "clean": "rimraf build",
@@ -17,7 +18,7 @@
     "build:html": "run-s clean:html mkdir:html _build:html",
     "_build:html": "cpr public/index.html build/index.html",
     "watch:html": "run-s build:html _watch:html",
-    "_watch:html": "chokidar index.html -c \"npm run build:html\"",
+    "_watch:html": "chokidar public/index.html -c \"npm run build:html\"",
     "clean:js": "rimraf build/js",
     "mkdir:js": "mkdirp build/js",
     "build:js": "run-s clean:js mkdir:js _build:js",
@@ -29,13 +30,13 @@
     "build:css": "run-s clean:css mkdir:css _build:css",
     "_build:css": "cpr public/css build/css",
     "watch:css": "run-s build:css _watch:css",
-    "_watch:css": "chokidar css/**/* -c \"npm run build:css\"",
+    "_watch:css": "chokidar public/css/**/* -c \"npm run build:css\"",
     "mkdir:assets": "run-s mkdir",
     "clean:assets": "rimraf build/assets",
     "build:assets": "run-s clean:assets mkdir:assets _build:assets",
     "_build:assets": "cpr public/assets build/assets",
     "watch:assets": "run-s build:assets _watch:assets",
-    "_watch:assets": "chokidar assets/**/* -c \"npm run build:assets\""
+    "_watch:assets": "chokidar public/assets/**/* -c \"npm run build:assets\""
   },
   "author": "Steve Brown",
   "license": "UNLICENSED",
@@ -50,7 +51,10 @@
     "chai-enzyme": "^0.5.1",
     "chokidar-cli": "^1.2.0",
     "cpr": "^2.0.0",
+    "dotenv": "^4.0.0",
     "enzyme": "^2.4.1",
+    "eslint": "^3.19.0",
+    "eslint-plugin-react": "^7.0.0",
     "http-server": "^0.9.0",
     "mkdirp": "^0.5.1",
     "mocha": "^3.0.1",
@@ -61,10 +65,15 @@
     "webpack": "^1.13.1"
   },
   "dependencies": {
+    "body-parser": "^1.17.1",
+    "cors": "^2.8.3",
+    "immutability-helper": "^2.2.0",
     "isomorphic-fetch": "^2.2.1",
+    "mongoose": "^4.9.8",
     "react": "^15.3.1",
     "react-dom": "^15.3.1",
     "react-redux": "^4.4.5",
+    "react-router-dom": "^4.1.1",
     "redux": "^3.6.0",
     "redux-thunk": "^2.1.0"
   }
