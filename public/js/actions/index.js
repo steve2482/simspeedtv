@@ -1,3 +1,7 @@
+if (process.env.NODE_ENV !== 'production') {
+  require('dotenv').config();
+}
+
 // Fetch Channel Names List Action
 export const FETCH_CHANNEL_NAMES = 'FETCH_CHANNEL_NAMES';
 export const fetchChannelNames = names => ({
@@ -7,7 +11,7 @@ export const fetchChannelNames = names => ({
 
 // Get Channel Names List for Sidebar
 export const getChannelNames = () => dispatch => {
-  const url = 'http://localhost:3000/channel-names';
+  const url = process.env.ROOT_URL + '/channel-names';
   return fetch(url).then(response => {
     if (!response.ok) {
       const error = new Error('Something went wrong while fetching channel names');
@@ -31,7 +35,7 @@ export const fetchLiveBroadcasts = broadcasts => ({
 
 // Get Current Live Broadcasts for Live Page
 export const getLiveBroadcasts = () => dispatch => {
-  const url = 'http://localhost:3000/live';
+  const url = process.env.ROOT_URL +'/live';
   return fetch(url).then(response => {
     if (!response.ok) {
       const error = new Error('Something went wrong while fetching live broadcast');
@@ -55,7 +59,7 @@ export const fetchChannelBroadcasts = broadcasts => ({
 
 // Get Channel Videos for Channel Page
 export const getChannelBroadcasts = (channelName, nextPageToken) => dispatch => {
-  const url = 'http://localhost:3000/channel-videos';
+  const url = process.env.ROOT_URL + '/channel-videos';
   const payload = JSON.stringify({
     channelName: channelName,
     nextPageToken: nextPageToken
