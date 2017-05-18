@@ -1,7 +1,7 @@
 import React from 'react';
 import Video from './video';
 
-import * as actions from '../actions/index';
+import * as actions from '../actions/actions';
 import {connect} from 'react-redux';
 
 export class LiveResults extends React.Component {

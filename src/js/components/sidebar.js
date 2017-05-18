@@ -2,7 +2,7 @@ import React from 'react';
 import {Link} from 'react-router-dom';
 import Channel from './channel';
 import CHANNELS from '../channels';
-import * as actions from '../actions/index';
+import * as actions from '../actions/actions';
 import {connect} from 'react-redux';
 
 export class Sidebar extends React.Component {

@@ -1,4 +1,4 @@
-import * as actions from '../actions/index';
+import * as actions from '../actions/actions';
 import update from 'immutability-helper';
 import store from '../../store';
 
