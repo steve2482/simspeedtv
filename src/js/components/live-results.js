@@ -5,18 +5,18 @@ import * as actions from '../actions/actions';
 import {connect} from 'react-redux';
 
 export class LiveResults extends React.Component {
-	constructor(props) {
-		super(props);
-	}
+  constructor(props) {
+    super();
+  }
 
-	componentDidMount() {
-		this.props.dispatch(
+  componentDidMount() {
+    this.props.dispatch(
       actions.getLiveBroadcasts()
     );
-	}
+  }
 
   render() {
-    let message = 'Choose a live broadcast or choose your favorite channel from the channel guide.'
+    let message = 'Choose a live broadcast or choose your favorite channel from the channel guide.';
     let numberOfBroadcasts = 0;
     let broadcasts = null;
     // Check if any live broadcasts, if none, display message to instruct user to select a channel
@@ -26,11 +26,11 @@ export class LiveResults extends React.Component {
       }
     }
     if (numberOfBroadcasts === 0) {
-        message = 'There are currently no races being broadcast live. Choose a channel from the channel guide to see previously broadcast races.';
+      message = 'There are currently no races being broadcast live. Choose a channel from the channel guide to see previously broadcast races.';
     } else {
       // If there are current live broadcasts, filter them out
       const currentLiveBroadcasters = this.props.state.liveBroadcasts.filter((broadcast) => {
-         return broadcast.items.length > 0;
+        return broadcast.items.length > 0;
       });
       let currentLiveBroadcasts = [];
       for (let i = 0; i < currentLiveBroadcasters.length; i++) {
@@ -52,7 +52,7 @@ export class LiveResults extends React.Component {
         {broadcasts}
         </div>
       </div>
-    );     
+      );     
     }
     return (
       <div className='live-results box'>
