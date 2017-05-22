@@ -5,7 +5,8 @@ const appState = {
   channelNames: [],
   liveBroadcasts: [],
   channelVideos: [],
-  nextPageToken: null
+  nextPageToken: null,
+  user: ''
 };
 
 export const simSpeedReducer = (state=appState, action) => {
@@ -25,7 +26,7 @@ export const simSpeedReducer = (state=appState, action) => {
     // console.log('current channel video state: ', currentChannelBroadcasts[0]);
     // console.log('new channel videos: ', action.broadcasts[0].snippet);
     if(currentChannelBroadcasts[0] === undefined || currentChannelBroadcasts[0].snippet.channelId !== action.broadcasts[0].snippet.channelId) {
-      console.log('channels no not match');
+      console.log('channels do not match');
       let currentChannelBroadcasts = [];
       action.broadcasts.forEach(broadcast => {
         currentChannelBroadcasts.push(broadcast);
@@ -44,6 +45,11 @@ export const simSpeedReducer = (state=appState, action) => {
   // Set nextPageToken
   if (action.type === actions.SET_NEXT_PAGE_TOKEN) {
     const newAppState = update(state, {nextPageToken: {$set: action.nextPageToken}});
+    return newAppState;
+  }
+  // Set User Name
+  if (action.type === actions.SET_USER) {
+    const newAppState = update(state, {user: {$set: action.userName}});
     return newAppState;
   }
   return state;
