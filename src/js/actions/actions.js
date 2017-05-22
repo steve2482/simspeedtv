@@ -90,6 +90,13 @@ export const getChannelBroadcasts = (channelName, nextPageToken) => dispatch => 
   .catch(error => console.log(error));
 };
 
+// Set User
+export const SET_USER = 'SET_USER';
+export const setUser = userName => ({
+  type: SET_USER,
+  userName
+});
+
 // Register User Server Request
 export const registerNewUser = newUser => dispatch => {
   console.log('action');
@@ -120,9 +127,4 @@ export const registerNewUser = newUser => dispatch => {
   .catch(error => console.log(error));
 };
 
-// Set User
-export const SET_USER = 'SET_USER';
-export const setUser = userName => ({
-  type: SET_USER,
-  userName
-});
+

@@ -15,7 +15,7 @@ export class Register extends React.Component {
       email: this.refs.email.value,
       userName: this.refs.userName.value,
       password: this.refs.password.value,
-      password: this.refs.password2.value
+      password2: this.refs.password2.value
     };
     this.props.dispatch(
       actions.registerNewUser(newUser)
