@@ -1,6 +1,5 @@
 import * as actions from '../actions/actions';
 import update from 'immutability-helper';
-import store from '../../store';
 
 const appState = {
   channelNames: [],

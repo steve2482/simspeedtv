@@ -53,6 +53,13 @@ export const fetchChannelBroadcasts = broadcasts => ({
   broadcasts
 });
 
+// Set nextPageToken
+export const SET_NEXT_PAGE_TOKEN = 'SET_NEXT_PAGE_TOKEN';
+export const setNextPageToken = nextPageToken => ({
+  type: SET_NEXT_PAGE_TOKEN,
+  nextPageToken
+});
+
 // Get Channel Videos for Channel Page
 export const getChannelBroadcasts = (channelName, nextPageToken) => dispatch => {
   const url = process.env.REACT_APP_ROOT_URL + '/channel-videos';
@@ -83,9 +90,3 @@ export const getChannelBroadcasts = (channelName, nextPageToken) => dispatch => 
   .catch(error => console.log(error));
 }
 
-// Set nextPageToken
-export const SET_NEXT_PAGE_TOKEN = 'SET_NEXT_PAGE_TOKEN';
-export const setNextPageToken = nextPageToken => ({
-  type: SET_NEXT_PAGE_TOKEN,
-  nextPageToken
-});
