@@ -99,7 +99,6 @@ export const setUser = userName => ({
 
 // Register User Server Request
 export const registerNewUser = newUser => dispatch => {
-  console.log('action');
   const url = process.env.REACT_APP_ROOT_URL + '/register';
   const payload = JSON.stringify(newUser);
   const request = new Request(url, {
@@ -111,20 +110,41 @@ export const registerNewUser = newUser => dispatch => {
   });
   return fetch(request)
   .then(response => {
-    console.log(response);
     if (!response.ok) {
       const error = new Error('Something went wrong while registering user.');
       console.log(error);
     }
-    console.log('action');
     return response;
   })
   .then(response => response.json())
   .then(response => {
-    console.log(response);
     dispatch(setUser(response));
   })
   .catch(error => console.log(error));
 };
 
-
+// LogIn User Server Request
+export const logInUser = user => dispatch => {
+  const url = process.env.REACT_APP_ROOT_URL + '/login';
+  const payload = JSON.stringify(user);
+  const request = new Request(url, {
+    method: 'POST',
+    body: payload,
+    headers: {
+      "Content-Type": "application/json"
+    }
+  });
+  return fetch(request)
+  .then(response => {
+    if (!response.ok) {
+      const error = new Error('Something when wrong during user login.');
+      console.log(error);
+    }
+    return response;
+  })
+  .then(response => response.json())
+  .then(response => {
+    dispatch(setUser(response));
+  })
+  .catch(error => console.log(error));
+};
