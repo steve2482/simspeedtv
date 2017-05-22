@@ -26,7 +26,7 @@ export const simSpeedReducer = (state=appState, action) => {
     // console.log('current channel video state: ', currentChannelBroadcasts[0]);
     // console.log('new channel videos: ', action.broadcasts[0].snippet);
     if(currentChannelBroadcasts[0] === undefined || currentChannelBroadcasts[0].snippet.channelId !== action.broadcasts[0].snippet.channelId) {
-      console.log('channels no not match');
+      console.log('channels do not match');
       let currentChannelBroadcasts = [];
       action.broadcasts.forEach(broadcast => {
         currentChannelBroadcasts.push(broadcast);
