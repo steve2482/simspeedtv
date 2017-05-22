@@ -5,7 +5,8 @@ const appState = {
   channelNames: [],
   liveBroadcasts: [],
   channelVideos: [],
-  nextPageToken: null
+  nextPageToken: null,
+  user: ''
 };
 
 export const simSpeedReducer = (state=appState, action) => {
@@ -44,6 +45,11 @@ export const simSpeedReducer = (state=appState, action) => {
   // Set nextPageToken
   if (action.type === actions.SET_NEXT_PAGE_TOKEN) {
     const newAppState = update(state, {nextPageToken: {$set: action.nextPageToken}});
+    return newAppState;
+  }
+  // Set User Name
+  if (action.type === actions.SET_USER) {
+    const newAppState = update(state, {user: {$set: action.userName}});
     return newAppState;
   }
   return state;

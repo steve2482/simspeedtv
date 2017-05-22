@@ -1,7 +1,8 @@
 import React from 'react';
 import * as actions from '../actions/actions';
+import {connect} from 'react-redux';
 
-export default class Register extends React.Component {
+export class Register extends React.Component {
   constructor(props) {
     super(props);
     this.registerUser = this.registerUser.bind(this);
@@ -17,7 +18,7 @@ export default class Register extends React.Component {
       password: this.refs.password2.value
     };
     this.props.dispatch(
-      actions.registerUser(newUser)
+      actions.registerNewUser(newUser)
     );
   }
 
@@ -29,10 +30,16 @@ export default class Register extends React.Component {
           <input type='email' ref='email' placeholder='Email' />
           <input type='text' ref='userName' placeholder='UserName' />
           <input type='password' ref='password' placeholder='Password' />
-          <input type='password' ref='password2' placeholser='Re-type Password' />
+          <input type='password' ref='password2' placeholder='Re-type Password' />
           <input type='submit'/>
         </form>
       </div>
     );
   }
 }
+
+const mapStateToProps = (state, props) => ({
+  state: state
+});
+
+export default connect(mapStateToProps)(Register);

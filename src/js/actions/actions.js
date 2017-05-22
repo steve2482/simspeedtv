@@ -91,7 +91,8 @@ export const getChannelBroadcasts = (channelName, nextPageToken) => dispatch => 
 };
 
 // Register User Server Request
-export const registerUser= newUser => {
+export const registerNewUser = newUser => dispatch => {
+  console.log('action');
   const url = process.env.REACT_APP_ROOT_URL + '/register';
   const payload = JSON.stringify(newUser);
   const request = new Request(url, {
@@ -103,11 +104,25 @@ export const registerUser= newUser => {
   });
   return fetch(request)
   .then(response => {
+    console.log(response);
     if (!response.ok) {
       const error = new Error('Something went wrong while registering user.');
       console.log(error);
     }
+    console.log('action');
     return response;
+  })
+  .then(response => response.json())
+  .then(response => {
+    console.log(response);
+    dispatch(setUser(response));
   })
   .catch(error => console.log(error));
 };
+
+// Set User
+export const SET_USER = 'SET_USER';
+export const setUser = userName => ({
+  type: SET_USER,
+  userName
+});
