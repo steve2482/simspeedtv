@@ -15,7 +15,6 @@ export class Sidebar extends React.Component {
   }
 
   render() {
-    console.log(this.props.state);
     const channels = this.props.state.channelNames.map((channelId, index) => {
       const channel = this.props.state.channelNames[index];
       return (

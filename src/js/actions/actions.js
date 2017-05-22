@@ -88,5 +88,26 @@ export const getChannelBroadcasts = (channelName, nextPageToken) => dispatch => 
     dispatch(fetchChannelBroadcasts(data.items));
   })
   .catch(error => console.log(error));
-}
+};
 
+// Register User Server Request
+export const registerUser= newUser => {
+  const url = process.env.REACT_APP_ROOT_URL + '/register';
+  const payload = JSON.stringify(newUser);
+  const request = new Request(url, {
+    method: 'POST',
+    body: payload,
+    headers: {
+      "Content-Type": "application/json"
+    }
+  });
+  return fetch(request)
+  .then(response => {
+    if (!response.ok) {
+      const error = new Error('Something went wrong while registering user.');
+      console.log(error);
+    }
+    return response;
+  })
+  .catch(error => console.log(error));
+};
