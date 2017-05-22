@@ -42,13 +42,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "run-s build:*",
-    "build:js": "react-scripts build",
-    "clean:css": "rimraf build/css",
-    "build:css": "run-s clean:css _build:css",
-    "_build:css": "cpr src/css build/static/css",
-    "watch:css": "run-s build:css _watch:css",
-    "_watch:css": "chokidar public/css/**/* -c \"npm run build:css\"",
+    "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   }
