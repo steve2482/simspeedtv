@@ -124,7 +124,7 @@ export const registerNewUser = newUser => dispatch => {
 };
 
 // LogIn User Server Request
-export const logInUser = user => dispatch => {
+export const userLogIn = user => dispatch => {
   const url = process.env.REACT_APP_ROOT_URL + '/login';
   const payload = JSON.stringify(user);
   const request = new Request(url, {
@@ -136,6 +136,7 @@ export const logInUser = user => dispatch => {
   });
   return fetch(request)
   .then(response => {
+    console.log(response);
     if (!response.ok) {
       const error = new Error('Something when wrong during user login.');
       console.log(error);

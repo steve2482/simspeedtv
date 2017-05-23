@@ -11,15 +11,17 @@ export class SignIn extends React.Component {
   userLogIn(e) {
     e.preventDefault();
     const user = {
-      userName: this.refs.userName.value,
+      username: this.refs.userName.value,
       password: this.refs.password.value
     };
+    console.log(user);
     this.props.dispatch(
       actions.userLogIn(user)
     );
   }
 
   render() {
+    console.log(this.props.state);
     return(
       <div className='sign-in box'>
         <form onSubmit={this.userLogIn}>
