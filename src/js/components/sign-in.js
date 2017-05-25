@@ -16,7 +16,7 @@ export class SignIn extends React.Component {
     };
     console.log(user);
     this.props.dispatch(
-      actions.userLogIn(user)
+      actions.userLogIn(user, this.props.history)
     );
   }
 

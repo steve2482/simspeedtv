@@ -98,7 +98,7 @@ export const setUser = userName => ({
 });
 
 // Register User Server Request
-export const registerNewUser = newUser => dispatch => {
+export const registerNewUser = (newUser, history) => dispatch => {
   const url = process.env.REACT_APP_ROOT_URL + '/register';
   const payload = JSON.stringify(newUser);
   const request = new Request(url, {
@@ -120,11 +120,14 @@ export const registerNewUser = newUser => dispatch => {
   .then(response => {
     dispatch(setUser(response));
   })
-  .catch(error => console.log(error));
+  .then(() => {
+    history.push('/');
+  })
+  .catch(error => console.log(error));  
 };
 
 // LogIn User Server Request
-export const userLogIn = user => dispatch => {
+export const userLogIn = (user, history) => dispatch => {
   const url = process.env.REACT_APP_ROOT_URL + '/login';
   const payload = JSON.stringify(user);
   const request = new Request(url, {
@@ -138,7 +141,7 @@ export const userLogIn = user => dispatch => {
   .then(response => {
     console.log(response);
     if (!response.ok) {
-      const error = new Error('Something when wrong during user login.');
+      const error = new Error('Something went wrong during user login.');
       console.log(error);
     }
     return response;
@@ -146,6 +149,26 @@ export const userLogIn = user => dispatch => {
   .then(response => response.json())
   .then(response => {
     dispatch(setUser(response));
+  })
+  .then(() => {
+    history.push('/');
+  })
+  .catch(error => console.log(error));
+};
+
+// Logout User
+export const logoutUser = () => dispatch => {
+  const url = process.env.REACT_APP_ROOT_URL + '/logout';  
+  return fetch(url)
+  .then(response => {
+    if (!response.ok) {
+      const error = new Error('Something went wrong during user logout');
+      console.log(error);
+    }
+    return response;
+  })
+  .then(() => {
+    dispatch(setUser(''));
   })
   .catch(error => console.log(error));
 };

@@ -18,7 +18,7 @@ export class Register extends React.Component {
       password2: this.refs.password2.value
     };
     this.props.dispatch(
-      actions.registerNewUser(newUser)
+      actions.registerNewUser(newUser, this.props.history)
     );
   }
 
