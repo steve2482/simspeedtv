@@ -26,7 +26,7 @@ export class Sidebar extends React.Component {
     if (this.props.state.user) {
       return (
         <div className='sidebar box'>
-          <h3>{this.props.state.user.userName}'s Favorite Channels</h3>
+          <h3>{this.props.state.user}'s Favorite Channels</h3>
           <h3 id='channel-list-header'>Channel List</h3>
           <ul>
             {channels}

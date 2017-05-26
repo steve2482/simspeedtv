@@ -71,7 +71,7 @@ export const getChannelBroadcasts = (channelName, nextPageToken) => dispatch => 
     method: 'POST',
     body: payload,
     headers: {
-      "Content-Type": "application/json"
+      "Content-Type": "application/json",
     }
   });
   return fetch(request)
@@ -106,7 +106,8 @@ export const registerNewUser = (newUser, history) => dispatch => {
     body: payload,
     headers: {
       "Content-Type": "application/json"
-    }
+    },
+    credentials: 'include'
   });
   return fetch(request)
   .then(response => {
@@ -134,8 +135,9 @@ export const userLogIn = (user, history) => dispatch => {
     method: 'POST',
     body: payload,
     headers: {
-      "Content-Type": "application/json"
-    }
+      "Content-Type": "application/json",
+    },
+    credentials: 'include'
   });
   return fetch(request)
   .then(response => {
@@ -158,8 +160,11 @@ export const userLogIn = (user, history) => dispatch => {
 
 // Logout User
 export const logoutUser = () => dispatch => {
-  const url = process.env.REACT_APP_ROOT_URL + '/logout';  
-  return fetch(url)
+  const url = process.env.REACT_APP_ROOT_URL + '/logout'; 
+  const request = new Request(url, {
+    credentials: 'include'
+  }) ;
+  return fetch(request)
   .then(response => {
     if (!response.ok) {
       const error = new Error('Something went wrong during user logout');
