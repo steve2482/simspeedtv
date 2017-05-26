@@ -23,9 +23,20 @@ export class Sidebar extends React.Component {
         </li>
       );
     });
+    if (this.props.state.user) {
+      return (
+        <div className='sidebar box'>
+          <h3>{this.props.state.user}'s Favorite Channels</h3>
+          <h3 id='channel-list-header'>Channel List</h3>
+          <ul>
+            {channels}
+          </ul>      
+        </div>
+      );
+    }
     return (
       <div className='sidebar box'>
-        <h4 id='channel-list-header'>Channel List</h4>
+        <h3 id='channel-list-header'>Channel List</h3>
         <ul>
           {channels}
         </ul>      

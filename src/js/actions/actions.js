@@ -71,7 +71,7 @@ export const getChannelBroadcasts = (channelName, nextPageToken) => dispatch => 
     method: 'POST',
     body: payload,
     headers: {
-      "Content-Type": "application/json"
+      "Content-Type": "application/json",
     }
   });
   return fetch(request)
@@ -98,8 +98,7 @@ export const setUser = userName => ({
 });
 
 // Register User Server Request
-export const registerNewUser = newUser => dispatch => {
-  console.log('action');
+export const registerNewUser = (newUser, history) => dispatch => {
   const url = process.env.REACT_APP_ROOT_URL + '/register';
   const payload = JSON.stringify(newUser);
   const request = new Request(url, {
@@ -107,24 +106,74 @@ export const registerNewUser = newUser => dispatch => {
     body: payload,
     headers: {
       "Content-Type": "application/json"
+    },
+    credentials: 'include'
+  });
+  return fetch(request)
+  .then(response => {
+    if (!response.ok) {
+      const error = new Error('Something went wrong while registering user.');
+      console.log(error);
     }
+    return response;
+  })
+  .then(response => response.json())
+  .then(response => {
+    dispatch(setUser(response));
+  })
+  .then(() => {
+    history.push('/');
+  })
+  .catch(error => console.log(error));  
+};
+
+// LogIn User Server Request
+export const userLogIn = (user, history) => dispatch => {
+  const url = process.env.REACT_APP_ROOT_URL + '/login';
+  const payload = JSON.stringify(user);
+  const request = new Request(url, {
+    method: 'POST',
+    body: payload,
+    headers: {
+      "Content-Type": "application/json",
+    },
+    credentials: 'include'
   });
   return fetch(request)
   .then(response => {
     console.log(response);
     if (!response.ok) {
-      const error = new Error('Something went wrong while registering user.');
+      const error = new Error('Something went wrong during user login.');
       console.log(error);
     }
-    console.log('action');
     return response;
   })
   .then(response => response.json())
   .then(response => {
-    console.log(response);
     dispatch(setUser(response));
+  })
+  .then(() => {
+    history.push('/');
   })
   .catch(error => console.log(error));
 };
 
-
+// Logout User
+export const logoutUser = () => dispatch => {
+  const url = process.env.REACT_APP_ROOT_URL + '/logout'; 
+  const request = new Request(url, {
+    credentials: 'include'
+  }) ;
+  return fetch(request)
+  .then(response => {
+    if (!response.ok) {
+      const error = new Error('Something went wrong during user logout');
+      console.log(error);
+    }
+    return response;
+  })
+  .then(() => {
+    dispatch(setUser(''));
+  })
+  .catch(error => console.log(error));
+};
