@@ -24,9 +24,20 @@ export class Sidebar extends React.Component {
       );
     });
     if (this.props.state.user) {
+      const favoriteChannels = this.props.state.user.favoriteChannels.map((channel, index) => {
+        const favoriteChannel = channel;
+        return (
+          <li key={index}>
+            <Channel name={favoriteChannel} />
+          </li>
+        );
+      });
       return (
         <div className='sidebar box'>
-          <h3>{this.props.state.user}'s Favorite Channels</h3>
+          <h3 id='channel-list-header'>{this.props.state.user.userName}'s Favorite Channels</h3>
+          <ul>
+            {favoriteChannels}
+          </ul>
           <h3 id='channel-list-header'>Channel List</h3>
           <ul>
             {channels}
