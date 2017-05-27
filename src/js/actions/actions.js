@@ -215,3 +215,42 @@ export const addFavoriteChannel = (user, channel) => dispatch => {
   })
   .catch(error => console.log(error));
 };
+
+// Remove Favorite Channel
+export const REMOVE_FAVORITE_CHANNEL = 'REMOVE_FAVORITE_CHANNEL';
+export const removeFavoriteChannel = channel => ({
+  type: REMOVE_FAVORITE_CHANNEL,
+  channel
+});
+
+// Call Server to Remove Favorite Channel
+export const unFavoriteChannel = (user, channel) => dispatch => {
+  const url = process.env.REACT_APP_ROOT_URL + '/remove-channel';
+  const data = {
+    userName: user,
+    channel: channel
+  };
+  const payload = JSON.stringify(data);
+  const request = new Request(url, {
+    method: 'POST',
+    body: payload,
+    headers: {
+      "Content-Type": "application/json"
+    },
+    credentials: 'include'
+  });
+  return fetch(request)
+  .then(response => {
+    if (!response.ok) {
+      const error = new Error('Something went wrong while favoriting a channel');
+      console.log(error);
+    }
+    return response;
+  })
+  .then(response => response.json())
+  .then(response => {
+    console.log(response);
+    dispatch(removeFavoriteChannel(response));
+  })
+  .catch(error => console.log(error));
+};

@@ -23,10 +23,7 @@ export const simSpeedReducer = (state=appState, action) => {
   // Channel Videos Reducer
   if (action.type === actions.FETCH_CHANNEL_BROADCASTS) {
     let currentChannelBroadcasts = JSON.parse(JSON.stringify(state.channelVideos));
-    // console.log('current channel video state: ', currentChannelBroadcasts[0]);
-    // console.log('new channel videos: ', action.broadcasts[0].snippet);
     if (currentChannelBroadcasts[0] === undefined || currentChannelBroadcasts[0].snippet.channelId !== action.broadcasts[0].snippet.channelId) {
-      console.log('channels do not match');
       let currentChannelBroadcasts = [];
       action.broadcasts.forEach(broadcast => {
         currentChannelBroadcasts.push(broadcast);
@@ -34,7 +31,6 @@ export const simSpeedReducer = (state=appState, action) => {
       const newAppState = update(state, {channelVideos: {$set: currentChannelBroadcasts}});
       return newAppState;
     } else {
-      console.log('same channel');
       action.broadcasts.forEach(broadcast => {
         currentChannelBroadcasts.push(broadcast);
       });
@@ -65,6 +61,14 @@ export const simSpeedReducer = (state=appState, action) => {
       const newAppState = update(state, {user: {favoriteChannels: {$set: currentFavChannels}}});
       return newAppState;
     }    
+  }
+  // Remove Channel from Favorite List
+  if (action.type === actions.REMOVE_FAVORITE_CHANNEL) {
+    let currentFavChannels = JSON.parse(JSON.stringify(state.user.favoriteChannels));
+    let index = currentFavChannels.indexOf(action.channel);
+    currentFavChannels.splice(index, 1);
+    const newAppState = update(state, {user: {favoriteChannels: {$set: currentFavChannels}}});
+    return newAppState;
   }
   return state;
 };
