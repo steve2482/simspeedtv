@@ -5,7 +5,8 @@ const appState = {
   channelNames: [],
   liveBroadcasts: [],
   channelVideos: [],
-  nextPageToken: null
+  nextPageToken: null,
+  user: ''
 };
 
 export const simSpeedReducer = (state=appState, action) => {
@@ -22,10 +23,7 @@ export const simSpeedReducer = (state=appState, action) => {
   // Channel Videos Reducer
   if (action.type === actions.FETCH_CHANNEL_BROADCASTS) {
     let currentChannelBroadcasts = JSON.parse(JSON.stringify(state.channelVideos));
-    // console.log('current channel video state: ', currentChannelBroadcasts[0]);
-    // console.log('new channel videos: ', action.broadcasts[0].snippet);
-    if(currentChannelBroadcasts[0] === undefined || currentChannelBroadcasts[0].snippet.channelId !== action.broadcasts[0].snippet.channelId) {
-      console.log('channels no not match');
+    if (currentChannelBroadcasts[0] === undefined || currentChannelBroadcasts[0].snippet.channelId !== action.broadcasts[0].snippet.channelId) {
       let currentChannelBroadcasts = [];
       action.broadcasts.forEach(broadcast => {
         currentChannelBroadcasts.push(broadcast);
@@ -33,7 +31,6 @@ export const simSpeedReducer = (state=appState, action) => {
       const newAppState = update(state, {channelVideos: {$set: currentChannelBroadcasts}});
       return newAppState;
     } else {
-      console.log('same channel');
       action.broadcasts.forEach(broadcast => {
         currentChannelBroadcasts.push(broadcast);
       });
@@ -44,6 +41,33 @@ export const simSpeedReducer = (state=appState, action) => {
   // Set nextPageToken
   if (action.type === actions.SET_NEXT_PAGE_TOKEN) {
     const newAppState = update(state, {nextPageToken: {$set: action.nextPageToken}});
+    return newAppState;
+  }
+  // Set User Name
+  if (action.type === actions.SET_USER) {
+    const newAppState = update(state, {user: {$set: action.userName}});
+    return newAppState;
+  }
+  // Add Channel to Favorited List
+  if (action.type === actions.ADD_FAVORITE_CHANNEL) {
+    if (state.user.favoriteChannels === undefined) {
+      let currentFavChannels = [];
+      currentFavChannels.push(action.channel);
+      const newAppState = update(state, {user: {favoriteChannels: {$set: currentFavChannels}}});
+      return newAppState;
+    } else  {      
+      let currentFavChannels = JSON.parse(JSON.stringify(state.user.favoriteChannels));
+      currentFavChannels.push(action.channel);
+      const newAppState = update(state, {user: {favoriteChannels: {$set: currentFavChannels}}});
+      return newAppState;
+    }    
+  }
+  // Remove Channel from Favorite List
+  if (action.type === actions.REMOVE_FAVORITE_CHANNEL) {
+    let currentFavChannels = JSON.parse(JSON.stringify(state.user.favoriteChannels));
+    let index = currentFavChannels.indexOf(action.channel);
+    currentFavChannels.splice(index, 1);
+    const newAppState = update(state, {user: {favoriteChannels: {$set: currentFavChannels}}});
     return newAppState;
   }
   return state;
