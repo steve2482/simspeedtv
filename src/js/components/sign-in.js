@@ -14,14 +14,12 @@ export class SignIn extends React.Component {
       username: this.refs.userName.value,
       password: this.refs.password.value
     };
-    console.log(user);
     this.props.dispatch(
       actions.userLogIn(user, this.props.history)
     );
   }
 
   render() {
-    console.log(this.props.state);
     return(
       <div className='sign-in box'>
         <form onSubmit={this.userLogIn}>

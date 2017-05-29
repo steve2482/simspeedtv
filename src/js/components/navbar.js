@@ -17,7 +17,6 @@ export class Navbar extends React.Component {
   }
 
   render() {
-    console.log(this.props.state);
     if (this.props.state.user) {
       return (
         <div className='navbar box'>

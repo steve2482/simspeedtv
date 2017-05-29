@@ -40,6 +40,14 @@ export class ChannelResults extends React.Component {
     this.props.dispatch(actions.unFavoriteChannel(this.props.state.user.userName, this.props.match.params.channelName));
   }
 
+  findFavorites(abreviatedNameKey, array) {
+    for (let i = 0; i < array.length; i++) {
+      if (array[i].abreviatedName === abreviatedNameKey) {
+        return array[i].favorites;
+      }
+    }
+  }
+
   render() {
     // List out Channel Names
     const channelName = this.props.match.params.channelName;
@@ -50,11 +58,14 @@ export class ChannelResults extends React.Component {
       );
     });
 
+    const channelFavorites = this.findFavorites(channelName, this.props.state.channelNames);
+
     // If User is a Guest Display This
     if (!this.props.state.user) {
       return (
         <div className='channel-results box'>
           <h3>{channelName}</h3>
+          <p>Favorites:{channelFavorites}</p>
           <div className='video-container'>
             {videos}
           </div>
@@ -67,7 +78,9 @@ export class ChannelResults extends React.Component {
     if (this.props.state.user.favoriteChannels.includes(this.props.match.params.channelName)) {
       return (
         <div className='channel-results box'>
-          <h3>{channelName}</h3><a href='#' id='favorite button' onClick={this.unFavoriteChannel}>Favorited</a>
+          <h3>{channelName}</h3>
+          <p>Favorites:{channelFavorites}</p>
+          <a href='#' id='favorite button' onClick={this.unFavoriteChannel}>Unfavorite</a>
           <div className='video-container'>
             {videos}
           </div>
@@ -80,7 +93,9 @@ export class ChannelResults extends React.Component {
     if (this.props.state.user) {
       return (
         <div className='channel-results box'>
-          <h3>{channelName}</h3><a href='#' id='favorite button' onClick={this.favoriteChannel}>Favorite</a>
+          <h3>{channelName}</h3>
+          <p>Favorites:{channelFavorites}</p>
+          <a href='#' id='favorite button' onClick={this.favoriteChannel}>Favorite</a>
           <div className='video-container'>
             {videos}
           </div>

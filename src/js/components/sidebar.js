@@ -14,15 +14,24 @@ export class Sidebar extends React.Component {
     );
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (this.props.state.user && (nextProps.state.user.favoriteChannels.length !== this.props.state.user.favoriteChannels.length)) {
+      this.props.dispatch(
+        actions.getChannelNames()
+      );
+    }
+  }
+
   render() {
     const channels = this.props.state.channelNames.map((channelId, index) => {
       const channel = this.props.state.channelNames[index];
       return (
         <li key={index}>
-          <Channel key={index} name={channel} />
+          <Channel key={index} name={channel.abreviatedName} favorites={channel.favorites} />
         </li>
       );
     });
+    // If User is signed in
     if (this.props.state.user) {
       const favoriteChannels = this.props.state.user.favoriteChannels.map((channel, index) => {
         const favoriteChannel = channel;
@@ -34,20 +43,21 @@ export class Sidebar extends React.Component {
       });
       return (
         <div className='sidebar box'>
-          <h3 id='channel-list-header'>{this.props.state.user.userName}'s Favorite Channels</h3>
+          <h3 id='channel-list-header'>Your Favorite Channels</h3>
           <ul>
             {favoriteChannels}
           </ul>
-          <h3 id='channel-list-header'>Channel List</h3>
+          <h3 id='channel-list-header'>Channel List(Favorites)</h3>
           <ul>
             {channels}
           </ul>      
         </div>
       );
     }
+    // Guest User
     return (
       <div className='sidebar box'>
-        <h3 id='channel-list-header'>Channel List</h3>
+        <h3 id='channel-list-header'>Channel List(Favorites)</h3>
         <ul>
           {channels}
         </ul>      
