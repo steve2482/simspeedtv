@@ -60,8 +60,6 @@ export class ChannelResults extends React.Component {
 
     const channelFavorites = this.findFavorites(channelName, this.props.state.channelNames);
 
-    console.log(channelFavorites);
-
     // If User is a Guest Display This
     if (!this.props.state.user) {
       return (
@@ -82,7 +80,7 @@ export class ChannelResults extends React.Component {
         <div className='channel-results box'>
           <h3>{channelName}</h3>
           <p>Favorites:{channelFavorites}</p>
-          <a href='#' id='favorite button' onClick={this.unFavoriteChannel}>Favorited</a>
+          <a href='#' id='favorite button' onClick={this.unFavoriteChannel}>Unfavorite</a>
           <div className='video-container'>
             {videos}
           </div>
