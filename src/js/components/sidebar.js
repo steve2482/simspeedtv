@@ -33,6 +33,7 @@ export class Sidebar extends React.Component {
         </li>
       );
     });
+    // If User is signed in
     if (this.props.state.user) {
       const favoriteChannels = this.props.state.user.favoriteChannels.map((channel, index) => {
         const favoriteChannel = channel;
@@ -55,6 +56,7 @@ export class Sidebar extends React.Component {
         </div>
       );
     }
+    // Guest User
     return (
       <div className='sidebar box'>
         <h3 id='channel-list-header'>Channel List(Favorites)</h3>
