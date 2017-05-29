@@ -17,6 +17,7 @@ export const getChannelNames = () => dispatch => {
   })
   .then(response => response.json())
   .then(data => {
+    console.log(data);
     dispatch(fetchChannelNames(data));
   })
   .catch(error => console.log(error));

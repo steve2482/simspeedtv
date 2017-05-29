@@ -19,7 +19,7 @@ export class Sidebar extends React.Component {
       const channel = this.props.state.channelNames[index];
       return (
         <li key={index}>
-          <Channel key={index} name={channel} />
+          <Channel key={index} name={channel.abreviatedName} favorites={channel.favorites} />
         </li>
       );
     });
@@ -38,7 +38,7 @@ export class Sidebar extends React.Component {
           <ul>
             {favoriteChannels}
           </ul>
-          <h3 id='channel-list-header'>Channel List</h3>
+          <h3 id='channel-list-header'>Channel List(Favorites)</h3>
           <ul>
             {channels}
           </ul>      
@@ -47,7 +47,7 @@ export class Sidebar extends React.Component {
     }
     return (
       <div className='sidebar box'>
-        <h3 id='channel-list-header'>Channel List</h3>
+        <h3 id='channel-list-header'>Channel List(Favorites)</h3>
         <ul>
           {channels}
         </ul>      
