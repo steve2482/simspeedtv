@@ -14,6 +14,16 @@ export class Sidebar extends React.Component {
     );
   }
 
+  componentWillReceiveProps(nextProps) {
+    console.log('nextProps:', nextProps.state.user.favoriteChannels)
+    console.log('this:', this.props.state.user.favoriteChannels)
+    if (this.props.state.user && (nextProps.state.user.favoriteChannels.length !== this.props.state.user.favoriteChannels.length)) {
+      this.props.dispatch(
+        actions.getChannelNames()
+      );
+    }
+  }
+
   render() {
     const channels = this.props.state.channelNames.map((channelId, index) => {
       const channel = this.props.state.channelNames[index];
