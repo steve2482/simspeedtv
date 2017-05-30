@@ -8,7 +8,9 @@ export const fetchChannelNames = names => ({
 // Get Channel Names List for Sidebar
 export const getChannelNames = () => dispatch => {
   const url = process.env.REACT_APP_ROOT_URL + '/channel-names';
-  return fetch(url).then(response => {
+  return fetch(url, {
+    credentials: 'include'})
+  .then(response => {
     if (!response.ok) {
       const error = new Error('Something went wrong while fetching channel names');
       console.log(error);
@@ -32,7 +34,9 @@ export const fetchLiveBroadcasts = broadcasts => ({
 // Get Current Live Broadcasts for Live Page
 export const getLiveBroadcasts = () => dispatch => {
   const url = process.env.REACT_APP_ROOT_URL + '/live';
-  return fetch(url).then(response => {
+  return fetch(url, {
+    credentials: 'include'})
+  .then(response => {
     if (!response.ok) {
       const error = new Error('Something went wrong while fetching live broadcast');
       console.log(error);
@@ -72,7 +76,8 @@ export const getChannelBroadcasts = (channelName, nextPageToken) => dispatch => 
     body: payload,
     headers: {
       "Content-Type": "application/json",
-    }
+    },
+    credentials: 'include'
   });
   return fetch(request)
   .then(response => {
@@ -97,6 +102,12 @@ export const setUser = userName => ({
   userName
 });
 
+export const SET_ERRORS = 'SET_ERRORS';
+export const setErrors = errors => ({
+  type: SET_ERRORS,
+  errors
+});
+
 // Register User Server Request
 export const registerNewUser = (newUser, history) => dispatch => {
   const url = process.env.REACT_APP_ROOT_URL + '/register';
@@ -114,15 +125,20 @@ export const registerNewUser = (newUser, history) => dispatch => {
     if (!response.ok) {
       const error = new Error('Something went wrong while registering user.');
       console.log(error);
+      response.json()
+      .then(response => {
+        dispatch(setErrors(response))
+      })      
     }
-    return response;
-  })
-  .then(response => response.json())
-  .then(response => {
-    dispatch(setUser(response));
-  })
-  .then(() => {
-    history.push('/');
+    else {
+      response.json()
+      .then(response => {
+        dispatch(setUser(response))
+      })      
+      .then(() =>
+        history.push('/')
+      );
+    }
   })
   .catch(error => console.log(error));  
 };
@@ -249,7 +265,6 @@ export const unFavoriteChannel = (user, channel) => dispatch => {
   })
   .then(response => response.json())
   .then(response => {
-    console.log(response);
     dispatch(removeFavoriteChannel(response));
   })
   .catch(error => console.log(error));

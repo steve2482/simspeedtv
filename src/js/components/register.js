@@ -1,6 +1,7 @@
 import React from 'react';
 import * as actions from '../actions/actions';
 import {connect} from 'react-redux';
+import Error from './error';
 
 export class Register extends React.Component {
   constructor(props) {
@@ -23,18 +24,48 @@ export class Register extends React.Component {
   }
 
   render() {
-    return(
-      <div className='register box'>
-        <form onSubmit={this.registerUser}>
-          <input type='text' ref='name' placeholder='Name' />
-          <input type='email' ref='email' placeholder='Email' />
-          <input type='text' ref='userName' placeholder='UserName' />
-          <input type='password' ref='password' placeholder='Password' />
-          <input type='password' ref='password2' placeholder='Re-type Password' />
-          <input type='submit'/>
-        </form>
-      </div>
-    );
+    console.log(this.props.state);
+    if (this.props.state.errors) {
+      let allErrors = [];
+      for (let i = 0; i < this.props.state.errors.length; i++) {
+        allErrors.push(this.props.state.errors[i].msg);
+      }
+      console.log(allErrors);
+      const errors = allErrors.map((eachError, index) => {
+        const error = eachError;
+        console.log(error);
+        return (
+          <Error key={index} message={error}/>
+        );
+      });
+      return(
+        <div className='register box'>
+          <form onSubmit={this.registerUser}>
+            <input type='text' ref='name' placeholder='Name' />
+            <input type='email' ref='email' placeholder='Email' />
+            <input type='text' ref='userName' placeholder='UserName' />
+            <input type='password' ref='password' placeholder='Password' />
+            <input type='password' ref='password2' placeholder='Re-type Password' />
+            <input type='submit'/>
+          </form>
+          {errors}
+        </div>
+      );
+    }
+    else {
+      return (
+        <div className='register box'>
+          <form onSubmit={this.registerUser}>
+            <input type='text' ref='name' placeholder='Name' />
+            <input type='email' ref='email' placeholder='Email' />
+            <input type='text' ref='userName' placeholder='UserName' />
+            <input type='password' ref='password' placeholder='Password' />
+            <input type='password' ref='password2' placeholder='Re-type Password' />
+            <input type='submit'/>
+          </form>
+        </div>
+      );
+    }    
   }
 }
 

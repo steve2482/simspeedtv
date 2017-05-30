@@ -10,6 +10,11 @@ li {
   list-style-type: none;
 }
 
+p {
+  -webkit-margin-before: 0em;
+  -webkit-margin-after: 0em;
+}
+
 /*NAVBAR STYLING*/
 .navbar {
   text-align: center;
@@ -33,6 +38,10 @@ li {
 
 #channel-list-header {
   text-align: center;
+}
+
+.channelName {
+  float: left;
 }
 
 /*RESULTS WINDOW STYLING*/

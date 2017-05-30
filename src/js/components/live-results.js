@@ -16,6 +16,7 @@ export class LiveResults extends React.Component {
   }
 
   render() {
+    console.log(this.props.state);
     let message = 'Choose a live broadcast or choose your favorite channel from the channel guide.';
     let numberOfBroadcasts = 0;
     let broadcasts = null;
