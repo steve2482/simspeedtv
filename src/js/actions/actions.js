@@ -102,6 +102,12 @@ export const setUser = userName => ({
   userName
 });
 
+export const SET_ERRORS = 'SET_ERRORS';
+export const setErrors = errors => ({
+  type: SET_ERRORS,
+  errors
+});
+
 // Register User Server Request
 export const registerNewUser = (newUser, history) => dispatch => {
   const url = process.env.REACT_APP_ROOT_URL + '/register';
@@ -119,15 +125,20 @@ export const registerNewUser = (newUser, history) => dispatch => {
     if (!response.ok) {
       const error = new Error('Something went wrong while registering user.');
       console.log(error);
+      response.json()
+      .then(response => {
+        dispatch(setErrors(response))
+      })      
     }
-    return response;
-  })
-  .then(response => response.json())
-  .then(response => {
-    dispatch(setUser(response));
-  })
-  .then(() => {
-    history.push('/');
+    else {
+      response.json()
+      .then(response => {
+        dispatch(setUser(response))
+      })      
+      .then(() =>
+        history.push('/')
+      );
+    }
   })
   .catch(error => console.log(error));  
 };

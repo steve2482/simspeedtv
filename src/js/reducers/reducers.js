@@ -6,7 +6,8 @@ const appState = {
   liveBroadcasts: [],
   channelVideos: [],
   nextPageToken: null,
-  user: ''
+  user: '',
+  errors: null
 };
 
 export const simSpeedReducer = (state=appState, action) => {
@@ -46,6 +47,11 @@ export const simSpeedReducer = (state=appState, action) => {
   // Set User Name
   if (action.type === actions.SET_USER) {
     const newAppState = update(state, {user: {$set: action.userName}});
+    return newAppState;
+  }
+  // Set Errors if Any
+  if (action.type === actions.SET_ERRORS) {
+    const newAppState = update(state, {errors: {$set: action.errors}});
     return newAppState;
   }
   // Add Channel to Favorited List
