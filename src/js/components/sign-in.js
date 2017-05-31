@@ -9,6 +9,10 @@ export class SignIn extends React.Component {
     this.userLogIn = this.userLogIn.bind(this);
   }
 
+  componentWillUnmount() {
+    this.props.dispatch(actions.setErrors(null));
+  }
+
   userLogIn(e) {
     e.preventDefault();
     const user = {
