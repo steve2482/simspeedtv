@@ -60,6 +60,8 @@ export class LiveResults extends React.Component {
     }
     return (
       <div className='live-results box'>
+        <p className='description'>{description}</p>
+        <p className='userFeaturesDescription'>{userFeaturesDescription}</p>
         <h3>Current Live Broadcasts</h3>
         <p className='message'>{message}</p>
         <div className='video-container'>
