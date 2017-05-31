@@ -188,7 +188,7 @@ export const logoutUser = () => dispatch => {
     return response;
   })
   .then(() => {
-    dispatch(setUser(''));
+    dispatch(setUser(null));
   })
   .catch(error => console.log(error));
 };

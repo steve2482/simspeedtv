@@ -16,7 +16,10 @@ export class Sidebar extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (this.props.state.user && (nextProps.state.user.favoriteChannels.length !== this.props.state.user.favoriteChannels.length)) {
+    if (nextProps.state.user === null || '' || undefined) {
+      console.log('user is null');
+    }
+    else if (this.props.state.user && (nextProps.state.user.favoriteChannels.length !== this.props.state.user.favoriteChannels.length)) {
       this.props.dispatch(
         actions.getChannelNames()
       );
