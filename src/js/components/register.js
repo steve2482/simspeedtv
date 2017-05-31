@@ -9,6 +9,10 @@ export class Register extends React.Component {
     this.registerUser = this.registerUser.bind(this);
   }
 
+  componentWillUnmount() {
+    this.props.dispatch(actions.setErrors(null));
+  }
+
   registerUser(e) {
     e.preventDefault();
     const newUser = {
