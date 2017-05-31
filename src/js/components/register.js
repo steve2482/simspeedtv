@@ -29,10 +29,8 @@ export class Register extends React.Component {
       for (let i = 0; i < this.props.state.errors.length; i++) {
         allErrors.push(this.props.state.errors[i].msg);
       }
-      console.log(allErrors);
       const errors = allErrors.map((eachError, index) => {
         const error = eachError;
-        console.log(error);
         return (
           <Error key={index} message={error}/>
         );

@@ -160,15 +160,20 @@ export const userLogIn = (user, history) => dispatch => {
     if (!response.ok) {
       const error = new Error('Something went wrong during user login.');
       console.log(error);
+      response.json()
+      .then(response => {
+        dispatch(setErrors(response))
+      })
     }
-    return response;
-  })
-  .then(response => response.json())
-  .then(response => {
-    dispatch(setUser(response));
-  })
-  .then(() => {
-    history.push('/');
+    else {
+      response.json()
+      .then(response => {
+        dispatch(setUser(response))
+      })
+      .then(() => {
+        history.push('/');
+      });      
+    }
   })
   .catch(error => console.log(error));
 };
