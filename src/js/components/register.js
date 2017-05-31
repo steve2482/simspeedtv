@@ -24,7 +24,6 @@ export class Register extends React.Component {
   }
 
   render() {
-    console.log(this.props.state);
     if (this.props.state.errors) {
       let allErrors = [];
       for (let i = 0; i < this.props.state.errors.length; i++) {
