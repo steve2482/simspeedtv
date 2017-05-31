@@ -16,8 +16,9 @@ export class LiveResults extends React.Component {
   }
 
   render() {
-    console.log(this.props.state);
-    let message = 'Choose a live broadcast or choose your favorite channel from the channel guide.';
+    const description = 'Welcome to SimSpeedTV. We bring all your favorite simracing broadcasters to one convienent location. Currently we feature 16 different TV style broadcasters. In the future we will be including simracing news channels, as well as POV streamers. Enjoy the races!';
+    const userFeaturesDescription = 'User registration is not needed to to use the application, though if you do you will be able to favorite channels, making them easier to find the next time you visit.';
+    let message = 'Watch a live broadcast or choose your favorite channel from the channel guide to view past broadcasts.';
     let numberOfBroadcasts = 0;
     let broadcasts = null;
     // Check if any live broadcasts, if none, display message to instruct user to select a channel
@@ -47,6 +48,8 @@ export class LiveResults extends React.Component {
       });
       return (
       <div className='live-results box'>
+        <p className='description'>{description}</p>
+        <p className='userFeaturesDescription'>{userFeaturesDescription}</p>
         <h3>Current Live Broadcasts</h3>
         <p className='message'>{message}</p>
         <div className='video-container'>
