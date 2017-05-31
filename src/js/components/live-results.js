@@ -28,7 +28,7 @@ export class LiveResults extends React.Component {
       }
     }
     if (numberOfBroadcasts === 0) {
-      message = 'There are currently no races being broadcast live. Choose a channel from the channel guide to see previously broadcast races.';
+      message = 'There are currently no races being broadcast live. Live broadcasts typically occur nights and weekends. Choose a channel from the channel guide to see previously broadcast races.';
     } else {
       // If there are current live broadcasts, filter them out
       const currentLiveBroadcasters = this.props.state.liveBroadcasts.filter((broadcast) => {

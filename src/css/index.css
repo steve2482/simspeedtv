@@ -71,13 +71,20 @@ h3 {
   width: 700px;
   margin: auto;
   margin-top: 30px;
+  text-align: left;
 }
 
 .userFeaturesDescription {
   width: 700px;
   margin: auto;
+  margin-top: 10px;
+  text-align: left;
 }
 
+.message {
+  width: 700px;
+  margin: auto;
+}
 .video-container {
   display: flex;
   flex-wrap: wrap;
