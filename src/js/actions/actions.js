@@ -226,7 +226,6 @@ export const addFavoriteChannel = (user, channel) => dispatch => {
   })
   .then(response => response.json())
   .then(response => {
-    console.log(response);
     dispatch(addFavoriteChannelToState(response));
   })
   .catch(error => console.log(error));
