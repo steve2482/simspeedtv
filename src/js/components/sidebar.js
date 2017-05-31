@@ -1,5 +1,6 @@
 import React from 'react';
 import Channel from './channel';
+import {Link} from 'react-router-dom';
 import * as actions from '../actions/actions';
 import {connect} from 'react-redux';
 
@@ -43,6 +44,7 @@ export class Sidebar extends React.Component {
       });
       return (
         <div className='sidebar box'>
+          <Link id='live button' to='/'><h3>View Live Channels</h3></Link> 
           <h3 id='channel-list-header'>Your Favorite Channels</h3>
           <ul>
             {favoriteChannels}
@@ -57,6 +59,7 @@ export class Sidebar extends React.Component {
     // Guest User
     return (
       <div className='sidebar box'>
+        <Link to='/'><h3 id='live button'>View Live Channels</h3></Link>
         <h3 id='channel-list-header'>Channel List(Favorites)</h3>
         <ul>
           {channels}
