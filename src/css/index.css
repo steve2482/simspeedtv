@@ -18,6 +18,13 @@ p {
 /*NAVBAR STYLING*/
 .navbar {
   text-align: center;
+  background-color: #dd1f25;
+  margin-bottom: 10px;
+  border-radius: 10px;
+  border-color: white; 
+}
+.navbar a {
+  color: white;
 }
 
 .navbar ul {
@@ -32,8 +39,9 @@ p {
 /*SIDEBAR STYLING*/
 .sidebar {
   width: 15%;
-  height: 900px;
+  height: 870px;
   float: left;
+  border-radius: 10px;
 }
 
 h3 {
@@ -58,13 +66,14 @@ h3 {
 .results-window {
   float: right;
   width: 84%;
-  height: 900px;
+  height: 870px;
 }
 
 .live-results, .channel-results, .sign-in, .register {
   text-align: center;
-  height: 900px;
+  height: 870px;
   overflow: auto;
+  border-radius: 10px;
 }
 
 .description {
