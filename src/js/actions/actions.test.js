@@ -18,7 +18,7 @@ import {
   userLogIn,
   logoutUser,
   ADD_FAVORITE_CHANNEL,
-  addFavoriteChanneToState,
+  addFavoriteChannelToState,
   addFavoriteChannel,
   REMOVE_FAVORITE_CHANNEL,
   removeFavoriteChannel,
@@ -135,3 +135,196 @@ describe('getChanneBroadcasts', () => {
 });
 
 // ==========================================================================
+describe('setUser', () => {
+  it('Should return the action', () => {
+    const userName = 'userName';
+    const action = setUser(userName);
+    expect(action.type).toEqual(SET_USER);
+    expect(action.userName).toEqual(userName);
+  });
+});
+
+// ==========================================================================
+describe('setErrors', () => {
+  it('Should return the action', () => {
+    const errors = ['errors'];
+    const action = setErrors(errors);
+    expect(action.type).toEqual(SET_ERRORS);
+    expect(action.errors).toEqual(errors);
+  });
+});
+
+// ==========================================================================
+describe('registerNewUser success', () => {
+  it('Should dispatch setUser', () => {
+    const user = 'newUser';
+
+    global.fetch = jest.fn().mockImplementation(() => {
+      Promise.resolve({
+        ok: true,
+        json() {
+          return user;
+        }
+      });
+    });
+
+    const dispatch= jest.fn();
+    return registerNewUser()(dispatch).then(() => {
+      expect(dispatch).toHaveBeenCalledWith('/register');
+      expect(dispatch).toHaveBeenCalledWith(setUser(user));
+    });
+  });
+});
+
+// ==========================================================================
+describe('registerNewUser error', () => {
+  it('Should dispatch setErrors', () => {
+    const errors = ['errors'];
+
+    global.fetch = jest.fn().mockImplementation(() => {
+      Promise.resolve({
+        ok: false,
+        json() {
+          return errors;
+        }
+      });
+    });
+
+    const dispatch= jest.fn();
+    return registerNewUser()(dispatch).then(() => {
+      expect(dispatch).toHaveBeenCalledWith('/register');
+      expect(dispatch).toHaveBeenCalledWith(setErrors(errors));
+    });
+  });
+});
+
+// ==========================================================================
+describe('userLogIn success', () => {
+  it('Should dispatch setUser', () => {
+    const user = 'user';
+
+    global.fetch = jest.fn().mockImplementation(() => {
+      Promise.resolve({
+        ok: true,
+        json() {
+          return user;
+        }
+      });
+    });
+
+    const dispatch= jest.fn();
+    return userLogIn()(dispatch).then(() => {
+      expect(dispatch).toHaveBeenCalledWith('/login');
+      expect(dispatch).toHaveBeenCalledWith(setUser(user));
+    });
+  });
+});
+
+// ==========================================================================
+describe('userLogIn error', () => {
+  it('Should dispatch setErrors', () => {
+    const errors = ['errors'];
+
+    global.fetch = jest.fn().mockImplementation(() => {
+      Promise.resolve({
+        ok: true,
+        json() {
+          return user;
+        }
+      });
+    });
+
+    const dispatch= jest.fn();
+    return userLogIn()(dispatch).then(() => {
+      expect(dispatch).toHaveBeenCalledWith('/register');
+      expect(dispatch).toHaveBeenCalledWith(setErrors(errors));
+    });
+  });
+});
+
+// ==========================================================================
+describe('logoutUser', () => {
+  it('Should dispatch setUser', () => {
+    const user = 'user';
+
+    global.fetch = jest.fn().mockImplementation(() => {
+      Promise.resolve({
+        ok: true,
+        json() {
+          return user;
+        }
+      });
+    });
+
+    const dispatch= jest.fn();
+    return logoutUser()(dispatch).then(() => {
+      expect(dispatch).toHaveBeenCalledWith('/logout');
+      expect(dispatch).toHaveBeenCalledWith(setUser(user));
+    });
+  });
+});
+
+// ==========================================================================
+describe('addFavoriteChanneToState', () => {
+  it('Should return the action', () => {
+    const channel = 'channel';
+    const action = addFavoriteChannelToState(channel);
+    expect(action.type).toEqual(ADD_FAVORITE_CHANNEL);
+    expect(action.channel).toEqual(channel);
+  });
+});
+
+// ==========================================================================
+describe('addFavoriteChannel', () => {
+  it('Should dispatch addFavoriteChanneToState', () => {
+    const channel = 'channel';
+
+    global.fetch = jest.fn().mockImplementation(() => {
+      Promise.resolve({
+        ok: true,
+        json() {
+          return channel;
+        }
+      });
+    });
+
+    const dispatch= jest.fn();
+    return addFavoriteChannel()(dispatch).then(() => {
+      expect(dispatch).toHaveBeenCalledWith('/favorite-channel');
+      expect(dispatch).toHaveBeenCalledWith(addFavoriteChannelToState(channel));
+    });
+  });
+});
+
+// ==========================================================================
+describe('removeFavoriteChannel', () => {
+  it('Should return the action', () => {
+    const channel = 'channel';
+    const action = removeFavoriteChannel(channel);
+    expect(action.type).toEqual(REMOVE_FAVORITE_CHANNEL);
+    expect(action.channel).toEqual(channel);
+  });
+});
+
+// ==========================================================================
+describe('unFavoriteChannel', () => {
+  it('Should dispatch removeFavoriteChannel', () => {
+    const channel = 'channel';
+
+    global.fetch = jest.fn().mockImplementation(() => {
+      Promise.resolve({
+        ok: true,
+        json() {
+          return channel;
+        }
+      });
+    });
+
+    const dispatch= jest.fn();
+    return unFavoriteChannel()(dispatch).then(() => {
+      expect(dispatch).toHaveBeenCalledWith('/favorite-channel');
+      expect(dispatch).toHaveBeenCalledWith(removeFavoriteChannel(channel));
+    });
+  });
+});
+
