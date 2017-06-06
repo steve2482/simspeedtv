@@ -37,7 +37,7 @@ describe('fetchChannelNames', () => {
 // ==========================================================================
 describe('getChannelNames', () => {
   it('Should dispatch fetchChannelNames', () => {
-    const names = ['name 1'];
+    const names = [{}];
 
     global.fetch = jest.fn().mockImplementation(() => {
       Promise.resolve({
@@ -49,6 +49,7 @@ describe('getChannelNames', () => {
     });
 
     const dispatch = jest.fn();
+    console.log(getChannelNames);
     return getChannelNames()(dispatch).then(() => {
       expect(fetch).toHaveBeenCalledWith('/channel-names');
       expect(dispatch).toHaveBeenCalledWith(fetchChannelNames(names));
