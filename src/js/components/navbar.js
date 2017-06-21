@@ -2,6 +2,7 @@ import React from 'react';
 import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 import * as actions from '../actions/actions';
+import '../../css/Navbar.css';
 
 export class Navbar extends React.Component {
   constructor(props) {
@@ -19,20 +20,20 @@ export class Navbar extends React.Component {
   render() {
     if (this.props.state.user) {
       return (
-        <div className='navbar box'>
-        <h3 className='title'><Link to='/'>SimSpeedTV</Link></h3>
-        <ul className='nav-buttons'>
-          <li><Link to='/sign-in' onClick={this.userLogout}>Logout</Link></li>
-        </ul>
-      </div>
+        <div className='navbar'>
+          <h1 className='title'><Link to='/'>SimRacerTV</Link></h1>
+          <ul className='nav-buttons'>
+            <li><Link to='/sign-in' onClick={this.userLogout}>Logout</Link></li>
+          </ul>
+        </div>
       );
     }
     return (
-      <div className='navbar box'>
-        <h3 className='title'><Link to='/'>SimSpeedTV</Link></h3>
+      <div className='navbar'>
+        <h1 className='title'><Link to='/'>SimRacerTV</Link></h1>
         <ul className='nav-buttons'>
-          <li><Link to='/sign-in'>Sign-In</Link></li>
-          <li><Link to='/register'>Register</Link></li>
+          <li className='button'><Link to='/sign-in'>Sign-In</Link></li>
+          <li className='button'><Link to='/register'>Register</Link></li>
         </ul>
       </div>
     );

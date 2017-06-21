@@ -3,6 +3,7 @@ import Channel from './channel';
 import {Link} from 'react-router-dom';
 import * as actions from '../actions/actions';
 import {connect} from 'react-redux';
+import '../../css/Sidebar.css';
 
 export class Sidebar extends React.Component {
   constructor(props) {
@@ -46,13 +47,13 @@ export class Sidebar extends React.Component {
         );
       });
       return (
-        <div className='sidebar box'>
-          <Link id='live button' to='/'><h3>View Live Channels</h3></Link> 
-          <h3 id='channel-list-header'>Your Favorite Channels</h3>
+        <div className='sidebar'>
+          <Link className='live' to='/'><h3>View Live Channels</h3></Link> 
+          <h1 id='channel-list-header'>Your Favorite Channels</h1>
           <ul>
             {favoriteChannels}
           </ul>
-          <h3 id='channel-list-header'>Channel List(Favorites)</h3>
+          <h1 id='channel-list-header'>Channel List(Favorites)</h1>
           <ul>
             {channels}
           </ul>      
@@ -61,9 +62,9 @@ export class Sidebar extends React.Component {
     }
     // Guest User
     return (
-      <div className='sidebar box'>
-        <Link to='/'><h3 id='live button'>View Live Channels</h3></Link>
-        <h3 id='channel-list-header'>Channel List(Favorites)</h3>
+      <div className='sidebar'>
+        <Link to='/'><h3 className='live'>View Live Channels</h3></Link>
+        <h1 id='channel-list-header'>Channel List(Favorites)</h1>
         <ul>
           {channels}
         </ul>      

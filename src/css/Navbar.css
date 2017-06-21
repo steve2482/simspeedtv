@@ -1,0 +1,44 @@
+@font-face {
+  font-family: sportsNight;
+  src: url(./fonts/SFSportsNight.ttf);
+}
+
+@font-face {
+  font-family: league;
+  src: url(./fonts/LeagueGothic-Regular.otf);
+}
+
+.navbar {
+  text-align: center;
+  background-color: #C92028;
+  margin-bottom: 10px;
+  border-radius: 10px;
+  box-shadow: 5px 5px 3px #51504F;
+  height: 60px;
+}
+
+.title {
+  font-family: sportsNight;
+  -webkit-margin-before: 0;
+  -webkit-margin-after: 0;
+  padding-top: 5px;
+  margin-bottom: 3px;
+}
+
+.navbar a {
+  color: white;
+}
+
+.navbar ul {
+  padding: 0;
+  display: inline;
+}
+
+.button {
+  display: inline;
+  margin: 10px;
+  background-color: #28262C;
+  padding: 3px;
+  border-radius: 3px;
+  font-family: league;
+}

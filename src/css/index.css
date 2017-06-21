@@ -1,3 +1,7 @@
+html {
+  background-image: url(./images/white_carbonfiber.png);
+}
+
 .box {
 	border: 1px solid black;
 }
@@ -13,53 +17,6 @@ li {
 p {
   -webkit-margin-before: 0em;
   -webkit-margin-after: 0em;
-}
-
-/*NAVBAR STYLING*/
-.navbar {
-  text-align: center;
-  background-color: #dd1f25;
-  margin-bottom: 10px;
-  border-radius: 10px;
-  border-color: white; 
-}
-.navbar a {
-  color: white;
-}
-
-.navbar ul {
-  padding: 0;
-}
-
-.navbar li {
-  display: inline;
-  margin: 10px;
-}
-
-/*SIDEBAR STYLING*/
-.sidebar {
-  width: 15%;
-  height: 870px;
-  float: left;
-  border-radius: 10px;
-}
-
-h3 {
-  -webkit-appearance: none;
-  font-size: 1.17em;
-  text-align: center;
-}
-
-#favs {
-  font-size: .75em;
-}
-
-#channel-list-header {
-  text-align: center;
-}
-
-.channelName {
-  float: left;
 }
 
 /*RESULTS WINDOW STYLING*/
