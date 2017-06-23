@@ -1,0 +1,16 @@
+#video-info {
+  width: 360px;
+  margin-top: 10px;
+}
+
+#video-title, #channel-title {
+  width: 320px;
+  text-align: center;
+  margin: auto;
+}
+
+#video-thumbnail {
+  margin: 20px 20px 0 20px;
+  border: 1px solid #D3374A;
+  border-radius: 3px;
+}

@@ -10,35 +10,54 @@
 
 .navbar {
   text-align: center;
-  background-color: #C92028;
+  background-color: white;
   margin-bottom: 10px;
   border-radius: 10px;
+  border: 1px solid #182F5B;
   box-shadow: 5px 5px 3px #51504F;
-  height: 60px;
+  height: 75px;
 }
 
-.title {
-  font-family: sportsNight;
-  -webkit-margin-before: 0;
-  -webkit-margin-after: 0;
-  padding-top: 5px;
-  margin-bottom: 3px;
+svg {
+  float: left;
+  margin-left: 15px;
+  margin-top: 20px;
+  font-size: 35px;
+  color: #182F5B;
+  cursor: pointer;
+}
+
+.logo {
+  padding-top: 3px;
 }
 
 .navbar a {
   color: white;
 }
 
-.navbar ul {
+.navbar ul { 
+  -webkit-margin-before: 0;
+  -webkit-margin-after: 0;
   padding: 0;
   display: inline;
+  float: right;
 }
 
-.button {
-  display: inline;
+.nav-button {
+  display: block;
   margin: 10px;
-  background-color: #28262C;
+  background-color: #182F5B;
   padding: 3px;
   border-radius: 3px;
   font-family: league;
+}
+
+.logout {
+  margin-top: 23px;
+}
+
+@media only screen and (min-width: 1150px) {
+  svg {
+    display: none;
+  }
 }

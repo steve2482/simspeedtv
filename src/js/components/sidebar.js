@@ -48,13 +48,13 @@ export class Sidebar extends React.Component {
       });
       return (
         <div className='sidebar'>
-          <Link className='live' to='/'><h3>View Live Channels</h3></Link> 
+          <Link to='/'><h3 className='live'>View Live Channels</h3></Link> 
           <h1 id='channel-list-header'>Your Favorite Channels</h1>
-          <ul>
+          <ul className='channelList favorites'>
             {favoriteChannels}
           </ul>
           <h1 id='channel-list-header'>Channel List(Favorites)</h1>
-          <ul>
+          <ul className='channelList'>
             {channels}
           </ul>      
         </div>
@@ -65,7 +65,7 @@ export class Sidebar extends React.Component {
       <div className='sidebar'>
         <Link to='/'><h3 className='live'>View Live Channels</h3></Link>
         <h1 id='channel-list-header'>Channel List(Favorites)</h1>
-        <ul>
+        <ul className='channelList'>
           {channels}
         </ul>      
       </div>

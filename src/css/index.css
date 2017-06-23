@@ -2,9 +2,9 @@ html {
   background-image: url(./images/white_carbonfiber.png);
 }
 
-.box {
+/*.box {
 	border: 1px solid black;
-}
+}*/
 
 a {
   text-decoration: none;
@@ -17,56 +17,4 @@ li {
 p {
   -webkit-margin-before: 0em;
   -webkit-margin-after: 0em;
-}
-
-/*RESULTS WINDOW STYLING*/
-.results-window {
-  float: right;
-  width: 84%;
-  height: 870px;
-}
-
-.live-results, .channel-results, .sign-in, .register {
-  text-align: center;
-  height: 870px;
-  overflow: auto;
-  border-radius: 10px;
-}
-
-.description {
-  width: 700px;
-  margin: auto;
-  margin-top: 30px;
-  text-align: left;
-}
-
-.userFeaturesDescription {
-  width: 700px;
-  margin: auto;
-  margin-top: 10px;
-  text-align: left;
-}
-
-.message {
-  width: 700px;
-  margin: auto;
-}
-.video-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-
-#video-info {
-  width: 360px;
-}
-
-#video-title, #channel-title {
-  width: 320px;
-  text-align: center;
-  margin: auto;
-}
-
-#video-thumbnail {
-  margin: 20px;
 }

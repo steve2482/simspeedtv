@@ -1,0 +1,98 @@
+@font-face {
+  font-family: oswaldBold;
+  src: url(./fonts/Oswald-Bold.ttf);
+}
+
+.results-window {
+  font-family: oswaldBold;
+  float: right;
+  width: 100%;
+  height: 870px;
+  background-color: white;
+  border-radius: 10px;
+  border: 1px solid #182F5B;
+  box-shadow: 5px 5px 3px #51504F;
+}
+
+.live-results, .channel-results, .sign-in, .register {
+  text-align: center;
+  height: 870px;
+  overflow: auto;
+  border-radius: 10px;
+}
+
+.text-box {
+  margin: auto;
+  width: 95%;
+}
+
+.description {
+  // width: 700px;
+  margin: auto;
+  margin-top: 30px;
+  text-align: left;
+}
+
+.userFeaturesDescription {
+  // width: 700px;
+  margin: auto;
+  margin-top: 10px;
+  text-align: left;
+  padding-bottom: 10px;
+  border-bottom: solid #182F5B;
+}
+
+.message {
+  margin: auto;
+}
+
+.channel-header {
+  -webkit-margin-after: 0;
+}
+
+.favorite-button {
+  background-color: #182F5B;
+  border-radius: 3px;
+  border: #182F5B;
+  color: white;
+  cursor: pointer;
+}
+
+.video-container {
+  margin: auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 95%;
+}
+
+.line {
+  border-top: solid #182F5B;
+}
+
+.load-more-button {
+  width: 100px;
+  height: 40px;
+  margin: 30px 0 10px;
+  background-color: #182F5B;
+  border-radius: 3px;
+  border: #182F5B;
+  font-family: league;
+  color: white;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+
+
+@media only screen and (min-width: 800px) {
+  .text-box {
+    width: 700px;
+  }
+}
+
+@media only screen and (min-width: 1150px) {
+  .results-window {
+    width: 84%;
+  }
+}
