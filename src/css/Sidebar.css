@@ -5,7 +5,7 @@
 
 .sidebar {
   background-color: #182F5B;  
-  width: 15%;
+  width: 285px;
   height: 870px;
   float: left;
   border-radius: 10px;
@@ -13,6 +13,8 @@
   font-family: league;
   box-shadow: 5px 5px 3px #51504F;
   display: none;
+  position: absolute;
+  z-index: 10;
 }
 
 .sidebar ul {
@@ -77,6 +79,7 @@
 
 @media only screen and (min-width: 1150px) {
   .sidebar {
+    width: 15%;
     display: block;
   }
 }

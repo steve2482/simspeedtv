@@ -47,7 +47,7 @@ export class Sidebar extends React.Component {
         );
       });
       return (
-        <div className='sidebar'>
+        <div className='sidebar' style={{display: this.props.state.showMenu ? 'block' : 'none' }}>
           <Link to='/'><h3 className='live'>View Live Channels</h3></Link> 
           <h1 id='channel-list-header'>Your Favorite Channels</h1>
           <ul className='channelList favorites'>
@@ -62,7 +62,7 @@ export class Sidebar extends React.Component {
     }
     // Guest User
     return (
-      <div className='sidebar'>
+      <div className='sidebar' style={{display: this.props.state.showMenu ? 'block' : 'none' }}>
         <Link to='/'><h3 className='live'>View Live Channels</h3></Link>
         <h1 id='channel-list-header'>Channel List(Favorites)</h1>
         <ul className='channelList'>

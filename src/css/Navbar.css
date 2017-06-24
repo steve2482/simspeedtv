@@ -60,4 +60,12 @@ svg {
   svg {
     display: none;
   }
+
+  .navbar {
+    text-align: left;
+  }
+
+  .logo {
+    margin-left: 3%;
+  }
 }

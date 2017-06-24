@@ -10,6 +10,7 @@ export class Navbar extends React.Component {
   constructor(props) {
     super(props);
     this.userLogout = this.userLogout.bind(this);
+    this.toggleMenu = this.toggleMenu.bind(this);
   }
 
   userLogout(e) {
@@ -19,12 +20,18 @@ export class Navbar extends React.Component {
     );
   }
 
+  toggleMenu() {
+    console.log('clicked');
+    this.props.dispatch(
+      actions.toggleSidebar());
+  }
+
   render() {
     if (this.props.state.user) {
       return (
         <div className='navbar'>
           <div className='menu-button'>
-            <FaBars />
+            <FaBars className='menu' onClick={this.toggleMenu} />
           </div>
           <Link to='/'><img className='logo' src={Img} alt={'SimRacerTV'} /></Link>
           <ul className='nav-buttons'>
@@ -36,7 +43,7 @@ export class Navbar extends React.Component {
     return (
       <div className='navbar'>
         <div className='menu-button'>
-          <FaBars />
+          <FaBars className='menu' onClick={this.toggleMenu} />
         </div>
         <Link to='/'><img className='logo' src={Img} alt={'SimRacerTV'} /></Link>
         <ul className='nav-buttons'>
