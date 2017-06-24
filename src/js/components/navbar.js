@@ -2,11 +2,15 @@ import React from 'react';
 import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 import * as actions from '../actions/actions';
+import '../../css/Navbar.css';
+import FaBars from 'react-icons/lib/fa/bars';
+import Img from '../../css/images/simracertv_logo.png';
 
 export class Navbar extends React.Component {
   constructor(props) {
     super(props);
     this.userLogout = this.userLogout.bind(this);
+    this.toggleMenu = this.toggleMenu.bind(this);
   }
 
   userLogout(e) {
@@ -16,23 +20,35 @@ export class Navbar extends React.Component {
     );
   }
 
+  toggleMenu() {
+    console.log('clicked');
+    this.props.dispatch(
+      actions.toggleSidebar());
+  }
+
   render() {
     if (this.props.state.user) {
       return (
-        <div className='navbar box'>
-        <h3 className='title'><Link to='/'>SimSpeedTV</Link></h3>
-        <ul className='nav-buttons'>
-          <li><Link to='/sign-in' onClick={this.userLogout}>Logout</Link></li>
-        </ul>
-      </div>
+        <div className='navbar'>
+          <div className='menu-button'>
+            <FaBars className='menu' onClick={this.toggleMenu} />
+          </div>
+          <Link to='/'><img className='logo' src={Img} alt={'SimRacerTV'} /></Link>
+          <ul className='nav-buttons'>
+            <li className='nav-button logout'><Link to='/sign-in' onClick={this.userLogout}>Logout</Link></li>
+          </ul>
+        </div>
       );
     }
     return (
-      <div className='navbar box'>
-        <h3 className='title'><Link to='/'>SimSpeedTV</Link></h3>
+      <div className='navbar'>
+        <div className='menu-button'>
+          <FaBars className='menu' onClick={this.toggleMenu} />
+        </div>
+        <Link to='/'><img className='logo' src={Img} alt={'SimRacerTV'} /></Link>
         <ul className='nav-buttons'>
-          <li><Link to='/sign-in'>Sign-In</Link></li>
-          <li><Link to='/register'>Register</Link></li>
+          <li className='nav-button'><Link to='/sign-in'>Sign-In</Link></li>
+          <li className='nav-button'><Link to='/register'>Register</Link></li>
         </ul>
       </div>
     );

@@ -3,6 +3,7 @@ import Video from './video';
 
 import * as actions from '../actions/actions';
 import {connect} from 'react-redux';
+import '../../css/Results-window.css';
 
 export class LiveResults extends React.Component {
   constructor(props) {
@@ -16,8 +17,8 @@ export class LiveResults extends React.Component {
   }
 
   render() {
-    const description = 'Welcome to SimSpeedTV. We bring all your favorite simracing broadcasters to one convienent location. Currently we feature 16 different TV style broadcasters. In the future we will be including simracing news channels, as well as POV streamers. Enjoy the races!';
-    const userFeaturesDescription = 'User registration is not needed to to use the application, though if you do you will be able to favorite channels, making them easier to find the next time you visit.';
+    const description = 'Welcome to SimRacerTV. We bring all your favorite simracing broadcasters to one convienent location. Currently, we feature 16 different TV style broadcasters. In the future, we will be including simracing news channels, as well as POV streamers. Enjoy the races!';
+    const userFeaturesDescription = 'User registration is not needed to to use the application, though if you do, you will be able to favorite channels, making them easier to find the next time you visit.';
     let message = 'Watch a live broadcast or choose your favorite channel from the channel guide to view past broadcasts.';
     let numberOfBroadcasts = 0;
     let broadcasts = null;
@@ -48,10 +49,12 @@ export class LiveResults extends React.Component {
       });
       return (
       <div className='live-results box'>
+        <div className='text-box'>
         <p className='description'>{description}</p>
         <p className='userFeaturesDescription'>{userFeaturesDescription}</p>
         <h3>Current Live Broadcasts</h3>
         <p className='message'>{message}</p>
+        </div>
         <div className='video-container'>
         {broadcasts}
         </div>
@@ -60,10 +63,12 @@ export class LiveResults extends React.Component {
     }
     return (
       <div className='live-results box'>
+        <div className='text-box'>
         <p className='description'>{description}</p>
         <p className='userFeaturesDescription'>{userFeaturesDescription}</p>
         <h3>Current Live Broadcasts</h3>
         <p className='message'>{message}</p>
+        </div>
         <div className='video-container'>
         {broadcasts}
         </div>

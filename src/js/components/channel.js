@@ -7,7 +7,7 @@ export default function Channel(props) {
     return (
       <div>
         <strong>
-          <Link to={'/channels/' + props.name} className='favoriteChannelName'>
+          <Link to={'/channels/' + props.name} className='channelName'>
             {props.name}
           </Link>
         </strong>
@@ -20,10 +20,10 @@ export default function Channel(props) {
       <div>
         <strong>
           <Link to={'/channels/' + props.name} className='channelName'>
-            {props.name}
+            {props.name}({props.favorites})
           </Link>
         </strong>
-        <p className='favorite-count'>({props.favorites})</p>
+        <p className='favorite-count'></p>
       </div>
     );
   }  

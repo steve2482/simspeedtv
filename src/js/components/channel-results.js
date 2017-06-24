@@ -3,6 +3,7 @@ import Video from './video';
 
 import * as actions from '../actions/actions';
 import {connect} from 'react-redux';
+import '../../css/Results-window.css';
 
 export class ChannelResults extends React.Component {
   constructor(props) {
@@ -64,12 +65,12 @@ export class ChannelResults extends React.Component {
     if (!this.props.state.user) {
       return (
         <div className='channel-results box'>
-          <h3>{channelName}</h3>
+          <h3 className='channel-header'>{channelName}</h3>
           <p>Favorites:{channelFavorites}</p>
-          <div className='video-container'>
+          <div className='video-container line'>
             {videos}
           </div>
-          <button onClick={this.loadMoreVideoResults} id='load-more button'>Load More</button>
+          <button onClick={this.loadMoreVideoResults} className='load-more-button'>Load More</button>
         </div>
       );  
     }
@@ -78,13 +79,13 @@ export class ChannelResults extends React.Component {
     if (this.props.state.user.favoriteChannels.includes(this.props.match.params.channelName)) {
       return (
         <div className='channel-results box'>
-          <h3>{channelName}</h3>
+          <h3 className='channel-header'>{channelName}</h3>
           <p>Favorites:{channelFavorites}</p>
-          <a href='#' id='favorite button' onClick={this.unFavoriteChannel}>Unfavorite</a>
-          <div className='video-container'>
+          <button className='favorite-button' onClick={this.unFavoriteChannel}>Unfavorite</button>
+          <div className='video-container line'>
             {videos}
           </div>
-          <button onClick={this.loadMoreVideoResults} id='load-more button'>Load More</button>
+          <button onClick={this.loadMoreVideoResults} className='load-more-button'>Load More</button>
         </div>
       );
     }
@@ -95,11 +96,11 @@ export class ChannelResults extends React.Component {
         <div className='channel-results box'>
           <h3>{channelName}</h3>
           <p>Favorites:{channelFavorites}</p>
-          <a href='#' id='favorite button' onClick={this.favoriteChannel}>Favorite</a>
-          <div className='video-container'>
+          <button className='favorite-button' onClick={this.favoriteChannel}>Favorite</button>
+          <div className='video-container line'>
             {videos}
           </div>
-          <button onClick={this.loadMoreVideoResults} id='load-more button'>Load More</button>
+          <button onClick={this.loadMoreVideoResults} className='load-more-button'>Load More</button>
         </div>
       );
     }

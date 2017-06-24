@@ -2,6 +2,7 @@ import React from 'react';
 import * as actions from '../actions/actions';
 import {connect} from 'react-redux';
 import Error from './error';
+import '../../css/signin-registration.css';
 
 export class Register extends React.Component {
   constructor(props) {
@@ -41,13 +42,23 @@ export class Register extends React.Component {
       });
       return(
         <div className='register box'>
-          <form onSubmit={this.registerUser}>
-            <input type='text' ref='name' placeholder='Name' />
-            <input type='email' ref='email' placeholder='Email' />
-            <input type='text' ref='userName' placeholder='UserName' />
-            <input type='password' ref='password' placeholder='Password' />
-            <input type='password' ref='password2' placeholder='Re-type Password' />
-            <input type='submit'/>
+          <form className='form' onSubmit={this.registerUser}>
+            <div className='first-register-input name-input'>
+              <input type='text' ref='name' placeholder='Name' />
+            </div>
+            <div className='email-input'>
+              <input type='email' ref='email' placeholder='Email' />
+            </div>
+            <div className='userName-input'>
+              <input type='text' ref='userName' placeholder='UserName' />
+            </div>
+            <div className='password-input'>
+              <input type='password' ref='password' placeholder='Password' />
+            </div>
+            <div className='password2-input'>
+              <input type='password' ref='password2' placeholder='Re-type Password' />
+            </div>
+            <input className='sub-button' type='submit'/>
           </form>
           {errors}
         </div>
@@ -56,13 +67,23 @@ export class Register extends React.Component {
     else {
       return (
         <div className='register box'>
-          <form onSubmit={this.registerUser}>
-            <input type='text' ref='name' placeholder='Name' />
-            <input type='email' ref='email' placeholder='Email' />
-            <input type='text' ref='userName' placeholder='UserName' />
-            <input type='password' ref='password' placeholder='Password' />
-            <input type='password' ref='password2' placeholder='Re-type Password' />
-            <input type='submit'/>
+          <form className='form' onSubmit={this.registerUser}>
+            <div className='first-register-input name-input'>
+              <input type='text' ref='name' placeholder='Name' />
+            </div>
+            <div className='email-input'>
+              <input type='email' ref='email' placeholder='Email' />
+            </div>
+            <div className='userName-input'>
+              <input type='text' ref='userName' placeholder='UserName' />
+            </div>
+            <div className='password-input'>
+              <input type='password' ref='password' placeholder='Password' />
+            </div>
+            <div className='password2-input'>
+              <input type='password' ref='password2' placeholder='Re-type Password' />
+            </div>
+            <input className='sub-button' type='submit'/>
           </form>
         </div>
       );
