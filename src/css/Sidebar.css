@@ -3,6 +3,17 @@
   src: url(./fonts/Oswald-Bold.ttf);
 }
 
+.sidebar-focus-shadow {
+  width: 98.5%;
+  height: 870px;
+  border-radius: 10px;
+  background-color: #605F5E;
+  opacity: .7;
+  display: none;
+  position: absolute;
+  z-index: 5;
+}
+
 .sidebar {
   background-color: #182F5B;  
   width: 285px;
@@ -65,6 +76,7 @@
   padding: 3px;
   border-radius: 5px;
   box-shadow: 0 3px #8C2430;
+  transition: all 0.3s ease 0s;
 }
 
 .channelName:hover, .live:hover {
@@ -78,6 +90,10 @@
 }
 
 @media only screen and (min-width: 1150px) {
+  .sidebar-focus-shadow {
+    width: 0;
+  }
+
   .sidebar {
     width: 15%;
     display: block;
