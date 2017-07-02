@@ -15,6 +15,36 @@ export class Channel extends React.Component {
   }
 
   render() {
+    let width = window.innerWidth
+            || document.documentElement.clientWidth
+            || document.body.clientWidth;
+    if (width >= 1150) {
+      // If Favorite Channels List
+      if (this.props.favorites === undefined) {
+        return (
+          <div>
+            <strong>
+              <Link to={'/channels/' + this.props.name} className='channelName'>
+                {this.props.name}
+              </Link>
+            </strong>
+          </div>
+        );
+      }
+      // If Channel List
+      else {
+        return (
+          <div>
+            <strong>
+              <Link to={'/channels/' + this.props.name} className='channelName'>
+                {this.props.name}({this.props.favorites})
+              </Link>
+            </strong>
+            <p className='favorite-count'></p>
+          </div>
+        );
+      }
+    }
     // If Favorite Channels List
     if (this.props.favorites === undefined) {
       return (
