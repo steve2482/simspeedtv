@@ -6,6 +6,7 @@ import * as actions from '../actions/actions';
 export class Channel extends React.Component {
   constructor(props) {
     super(props);
+    this.toggleMenu = this.toggleMenu.bind(this);
   }
 
   toggleMenu() {
