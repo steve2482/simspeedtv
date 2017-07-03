@@ -1,0 +1,101 @@
+@font-face {
+  font-family: oswaldBold;
+  src: url(./fonts/Oswald-Bold.ttf);
+}
+
+.sidebar-focus-shadow {
+  width: 98.5%;
+  height: 870px;
+  border-radius: 10px;
+  background-color: #605F5E;
+  opacity: .7;
+  display: none;
+  position: absolute;
+  z-index: 5;
+}
+
+.sidebar {
+  background-color: #182F5B;  
+  width: 285px;
+  height: 870px;
+  float: left;
+  border-radius: 10px;
+  color: white;
+  font-family: league;
+  box-shadow: 5px 5px 3px #51504F;
+  display: none;
+  position: absolute;
+  z-index: 10;
+}
+
+.sidebar ul {
+  -webkit-padding-start: 0;
+  font-family: oswaldBold;
+}
+
+.sidebar a {
+  color: white;
+}
+
+.sidebar h3 {
+  -webkit-appearance: none;
+  text-align: center;
+}
+
+.live {
+  margin: 30px auto;
+  width: 150px;
+  font-family: oswaldBold;
+  background-color: #8C2430;
+  padding: 3px;
+  border-radius: 5px;
+  box-shadow: 0 3px #5B171F;
+}
+
+#channel-list-header {
+  text-align: center;
+  clear: left;
+  text-outline: 2px black;
+}
+
+.channelList {
+  margin: auto;
+  width: 150px;
+}
+
+.favorites {
+  margin-bottom: 60px; 
+}
+
+.channelName {
+  width: 150px;
+  margin: 7px auto 0;
+  clear: left;
+  float: left;
+  background-color: #D3374A;
+  padding: 3px;
+  border-radius: 5px;
+  box-shadow: 0 3px #8C2430;
+  transition: all 0.3s ease 0s;
+}
+
+.channelName:hover, .live:hover {
+  background-color: #AA2C3B;
+}
+
+.channelName:active, .live:active {
+  background-color: #8C2430;
+  box-shadow: 0 1.5px #28262C;
+  transform: translateY(1.5px);
+}
+
+@media only screen and (min-width: 1150px) {
+  .sidebar-focus-shadow {
+    width: 0;
+  }
+
+  .sidebar {
+    width: 15%;
+    display: block;
+  }
+}

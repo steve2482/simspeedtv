@@ -1,13 +1,20 @@
 import * as actions from '../actions/actions';
 import update from 'immutability-helper';
 
+let width = window.innerWidth
+            || document.documentElement.clientWidth
+            || document.body.clientWidth;
+
+let showMenu = width >= 1150 ? true : false;
+
 const appState = {
   channelNames: [],
   liveBroadcasts: [],
   channelVideos: [],
   nextPageToken: null,
   user: '',
-  errors: null
+  errors: null,
+  showMenu: showMenu
 };
 
 export const simSpeedReducer = (state=appState, action) => {
@@ -74,6 +81,12 @@ export const simSpeedReducer = (state=appState, action) => {
     let index = currentFavChannels.indexOf(action.channel);
     currentFavChannels.splice(index, 1);
     const newAppState = update(state, {user: {favoriteChannels: {$set: currentFavChannels}}});
+    return newAppState;
+  }
+  // Toggle Sidebar Menu
+  if (action.type === actions.TOGGLE_SIDEBAR) {
+    let showMenu = state.showMenu;
+    const newAppState = update(state, {showMenu: {$set: !showMenu}});
     return newAppState;
   }
   return state;

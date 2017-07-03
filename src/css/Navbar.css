@@ -1,0 +1,71 @@
+@font-face {
+  font-family: sportsNight;
+  src: url(./fonts/SFSportsNight.ttf);
+}
+
+@font-face {
+  font-family: league;
+  src: url(./fonts/LeagueGothic-Regular.otf);
+}
+
+.navbar {
+  text-align: center;
+  background-color: white;
+  margin-bottom: 10px;
+  border-radius: 10px;
+  border: 1px solid #182F5B;
+  box-shadow: 5px 5px 3px #51504F;
+  height: 75px;
+}
+
+svg {
+  float: left;
+  margin-left: 15px;
+  margin-top: 20px;
+  font-size: 35px;
+  color: #182F5B;
+  cursor: pointer;
+}
+
+.logo {
+  padding-top: 3px;
+}
+
+.navbar a {
+  color: white;
+}
+
+.navbar ul { 
+  -webkit-margin-before: 0;
+  -webkit-margin-after: 0;
+  padding: 0;
+  display: inline;
+  float: right;
+}
+
+.nav-button {
+  display: block;
+  margin: 10px;
+  background-color: #182F5B;
+  padding: 3px;
+  border-radius: 3px;
+  font-family: league;
+}
+
+.logout {
+  margin-top: 23px;
+}
+
+@media only screen and (min-width: 1150px) {
+  svg {
+    display: none;
+  }
+
+  .navbar {
+    text-align: left;
+  }
+
+  .logo {
+    margin-left: 3%;
+  }
+}

@@ -274,3 +274,9 @@ export const unFavoriteChannel = (user, channel) => dispatch => {
   })
   .catch(error => console.log(error));
 };
+
+// Toggle Sidebar Menu
+export const TOGGLE_SIDEBAR = 'TOGGLE_SIDEBAR';
+export const toggleSidebar = () => ({
+  type: TOGGLE_SIDEBAR
+});

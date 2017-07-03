@@ -3,6 +3,8 @@ import Error from './error';
 import * as actions from '../actions/actions';
 import {connect} from 'react-redux';
 
+import '../../css/signin-registration.css';
+
 export class SignIn extends React.Component {
   constructor(props) {
     super(props);
@@ -38,22 +40,32 @@ export class SignIn extends React.Component {
       });
       return(
         <div className='sign-in box'>
-          <form onSubmit={this.userLogIn}>
-            <input type='text' ref='userName' placeholder='UserName'/>
-            <input type='password' ref='password' placeholder='Password'/>
-            <input type='submit'/> 
+          <form className='form' onSubmit={this.userLogIn}>
+            <div className='first-input userName-input'>
+              <input type='text' ref='userName' placeholder='UserName'/>
+            </div>
+            <div className='password-input'>
+              <input type='password' ref='password' placeholder='Password'/>
+            </div>
+            <input className='sub-button' type='submit'/> 
           </form>
-          {errors}
+          <div className='errors'>
+            {errors}
+          </div>
         </div>
       );
     }
     else {
       return (
         <div className='sign-in box'>
-          <form onSubmit={this.userLogIn}>
-            <input type='text' ref='userName' placeholder='UserName'/>
-            <input type='password' ref='password' placeholder='Password'/>
-            <input type='submit'/> 
+          <form className='form' onSubmit={this.userLogIn}>
+            <div className='first-input userName-input'>
+              <input type='text' ref='userName' placeholder='UserName'/>
+            </div>
+            <div className='password-input'>
+              <input type='password' ref='password' placeholder='Password'/>
+            </div>
+            <input className='sub-button' type='submit'/> 
           </form>
         </div>
       )
