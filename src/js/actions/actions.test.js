@@ -49,7 +49,6 @@ describe('getChannelNames', () => {
     });
 
     const dispatch = jest.fn();
-    console.log(getChannelNames);
     return getChannelNames()(dispatch).then(() => {
       expect(fetch).toHaveBeenCalledWith('/channel-names');
       expect(dispatch).toHaveBeenCalledWith(fetchChannelNames(names));

@@ -17,7 +17,7 @@ describe('<SignIn />', () => {
     nextPageToken: null,
     user: '',
     errors: null 
-  }
+  };
   let wrapper;
 
   beforeEach(() => {
@@ -35,6 +35,6 @@ describe('<SignIn />', () => {
   it('Should render with errors if errors exist', () => {
     state.errors = ['error 1', 'error 2'];
     wrapper = shallow(<SignIn state={state} />);
-    expect(wrapper.children()).to.have.length(3);
-  })
+    expect(wrapper.children('.errors').children()).to.have.length(2);
+  });
 });

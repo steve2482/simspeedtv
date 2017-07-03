@@ -30,7 +30,8 @@ describe('simSpeedReducer', () => {
       channelVideos: [],
       nextPageToken: null,
       user: '',
-      errors: null
+      errors: null,
+      showMenu: false
     });
   });
 
@@ -50,7 +51,8 @@ describe('simSpeedReducer', () => {
         channelVideos: [],
         nextPageToken: null,
         user: '',
-        errors: null
+        errors: null,
+        showMenu: false
       });
     });
   });
@@ -65,7 +67,8 @@ describe('simSpeedReducer', () => {
         channelVideos: [],
         nextPageToken: null,
         user: '',
-        errors: null
+        errors: null,
+        showMenu: false
       });
     });
   });
@@ -80,7 +83,8 @@ describe('simSpeedReducer', () => {
         channelVideos: ['broadcast 1', 'broadcast 2'],
         nextPageToken: null,
         user: '',
-        errors: null
+        errors: null,
+        showMenu: false
       });
     });
   });
@@ -95,7 +99,8 @@ describe('simSpeedReducer', () => {
         channelVideos: [],
         nextPageToken: pageToken,
         user: '',
-        errors: null
+        errors: null,
+        showMenu: false
       });
     });
   });
@@ -110,7 +115,8 @@ describe('simSpeedReducer', () => {
         channelVideos: [],
         nextPageToken: null,
         user: 'user',
-        errors: null
+        errors: null,
+        showMenu: false
       });
     });
   });
@@ -121,11 +127,12 @@ describe('simSpeedReducer', () => {
       state = simSpeedReducer(state, setErrors(error));
       expect(state).toEqual({
         channelNames: [],
-      liveBroadcasts: [],
-      channelVideos: [],
-      nextPageToken: null,
-      user: '',
-      errors: ['error']
+        liveBroadcasts: [],
+        channelVideos: [],
+        nextPageToken: null,
+        user: '',
+        errors: ['error'],
+        showMenu: false
       });
     });
   });
@@ -141,7 +148,8 @@ describe('simSpeedReducer', () => {
           userName: 'userName',
           favoriteChannels: []
         },
-        errors: null
+        errors: null,
+        showMenu: false
       };
       state = simSpeedReducer(state, addFavoriteChannelToState(channelName));
       state = simSpeedReducer(state, addFavoriteChannelToState(channelName2));
@@ -154,7 +162,8 @@ describe('simSpeedReducer', () => {
           userName: 'userName',
           favoriteChannels: ['channel 1', 'channel 2']
         },
-        errors: null
+        errors: null,
+        showMenu: false
       });
     });
   });
@@ -170,7 +179,8 @@ describe('simSpeedReducer', () => {
           userName: 'userName',
           favoriteChannels: ['channel 1', 'channel 2']
         },
-        errors: null
+        errors: null,
+        showMenu: false
       };
       state = simSpeedReducer(state, removeFavoriteChannel(channelName));
       expect(state).toEqual({
@@ -182,7 +192,8 @@ describe('simSpeedReducer', () => {
           userName: 'userName',
           favoriteChannels: ['channel 2']
         },
-        errors: null
+        errors: null,
+        showMenu: false
       });
     });
   });
