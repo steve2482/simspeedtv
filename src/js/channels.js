@@ -1,4 +1,4 @@
-{
+  {
   abreviatedName: 'GSRC',
   name: 'Global SimRacing Channel',
   youtubeId: 'UC76vyQZnIIF7iA5ta24ukVw',
@@ -94,4 +94,21 @@
     youtubeId: 'UCppm6ASu9nj9EF8UP94ktGA',
     favorites: 0
   }
-
+  {
+    abreviatedName: 'ASN',
+    name: 'American Sim Network',
+    youtubeId: 'UCfjr2WRM-6qZkDHb9wyk0Sw',
+    favorites: 0
+  }
+  {
+    abreviatedName: 'CFR TV',
+    name: 'Centerforce TV',
+    youtubeId: 'UC9vTBFefgi9eocfD_ljuNdQ',
+    favorites: 0
+  }
+  {
+    abreviatedName: 'Iracing',
+    name: 'Iracing Official',
+    youtubeId: 'UCPEcqkRG-kf2Vk6Rn_2WZSQ',
+    favorites: 0
+  }
