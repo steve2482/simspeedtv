@@ -1,0 +1,18 @@
+.tv-screen {
+  width: 100%;
+}
+
+.screen-container {
+  width: 1300px;
+  height: 740px;
+  margin: auto;
+  margin-top: 70px;
+  background-color: black;
+  border: 1px solid #D3374A;
+  border-radius: 10px;
+}
+
+.screen {
+  margin: 10px;
+}
+
