@@ -65,7 +65,7 @@
   margin: 30px auto;
   width: 150px;
   font-family: oswaldBold;
-  background-color: #8C2430;
+  background: linear-gradient(#a02331, #D3374A);
   padding: 3px;
   border-radius: 5px;
   box-shadow: 0 3px #5B171F;
@@ -92,7 +92,7 @@
   margin: 7px auto 0;
   clear: left;
   float: left;
-  background-color: #D3374A;
+  background: linear-gradient(#a02331, #D3374A);
   padding: 3px;
   border-radius: 5px;
   box-shadow: 0 3px #8C2430;
@@ -100,7 +100,8 @@
 }
 
 .channelName:hover, .live:hover {
-  background-color: #AA2C3B;
+  transition: 0.3s ease 0s;
+  background: linear-gradient(#ba2e3e, #AA2C3B);
 }
 
 .channelName:active, .live:active {

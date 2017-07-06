@@ -3,6 +3,10 @@
   src: url(./fonts/Oswald-Bold.ttf);
 }
 
+a {
+  color: black;
+}
+
 .results-window {
   font-family: oswaldBold;
   float: right;
