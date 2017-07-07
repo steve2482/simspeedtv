@@ -74,13 +74,22 @@
 #channel-list-header {
   text-align: center;
   clear: left;
-  text-outline: 2px black;
+  text-shadow: -1px -1px 0 black,
+                1px -1px 0 black,
+                -1px 1px 0 black,
+                1px  1px 0 black; 
 }
 
 .channelList {
   margin: auto;
   width: 150px;
-  padding-bottom: 15px;
+  margin-bottom: 15px;
+  display: flex;
+  flex-direction: column;
+}
+
+.channelList li {
+  flex: 1;
 }
 
 .favorites {
@@ -100,7 +109,6 @@
 }
 
 .channelName:hover, .live:hover {
-  transition: 0.3s ease 0s;
   background: linear-gradient(#ba2e3e, #AA2C3B);
 }
 
@@ -108,6 +116,10 @@
   background-color: #8C2430;
   box-shadow: 0 1.5px #28262C;
   transform: translateY(1.5px);
+}
+
+.channelList:last-child {
+  padding-bottom: 15px;
 }
 
 @media only screen and (min-width: 1150px) {
