@@ -62,7 +62,7 @@
 }
 
 .live {
-  margin: 30px auto;
+  margin: 30px auto 15px;
   width: 150px;
   font-family: oswaldBold;
   background: linear-gradient(#a02331, #D3374A);
@@ -72,6 +72,9 @@
 }
 
 #channel-list-header {
+  -webkit-margin-before: 0;
+  -webkit-margin-after: 0;
+  margin-bottom: 15px;
   text-align: center;
   clear: left;
   text-shadow: -1px -1px 0 black,
