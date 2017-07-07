@@ -17,7 +17,7 @@ export default function App() {
         <Sidebar />
         <main className='results-window'>
           <Route exact path='/' component={LiveResults} />
-          <Route exact path='/:videoId' component={TVScreen} />
+          <Route exact path='/video/:videoId' component={TVScreen} />
           <Route exact path='/channels/:channelName' component={ChannelResults} />
           <Route exact path='/sign-in' component={SignIn} />
           <Route exact path='/register' component={Register} />
