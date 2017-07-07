@@ -1,6 +1,19 @@
 #video-info {
   width: 360px;
-  margin-top: 10px;
+  margin: 5px;
+  border-radius: 10px;
+}
+
+#video-info:hover {
+  background: linear-gradient(#EDEAE8, #B2B0AE);
+  box-shadow: 0 3px #777675;
+  transition: all 0.3s ease 0s;
+}
+
+#video-info:active {
+  background-color: #777675;
+  box-shadow: 0 1.5px #28262C;
+  transform: translateY(1.5px); 
 }
 
 #video-title, #channel-title {

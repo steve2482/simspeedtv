@@ -3,6 +3,10 @@
   src: url(./fonts/Oswald-Bold.ttf);
 }
 
+a {
+  color: black;
+}
+
 .results-window {
   font-family: oswaldBold;
   float: right;
@@ -19,6 +23,24 @@
   height: 870px;
   overflow: auto;
   border-radius: 10px;
+}
+
+.live-results::-webkit-scrollbar, .channel-results::-webkit-scrollbar {
+  width: 12px;
+  background-color: #F5F5F5;
+  border-radius: 0px 10px 10px 0px;
+}
+
+.live-results::-webkit-scrollbar-thumb, .channel-results::-webkit-scrollbar-thumb {
+  border-radius: 0px 10px 10px 0px;
+  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+  background-color: #D3374A;
+}
+
+.live-results::-webkit-scrollbar-track, .channel-results::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+  border-radius: 0px 10px 10px 0px;
+  background-color: #F5F5F5;
 }
 
 .text-box {
