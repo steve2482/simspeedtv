@@ -9,7 +9,7 @@ import {
   fetchChannelBroadcasts,
   SET_NEXT_PAGE_TOKEN,
   setNextPageToken,
-  getChanneBroadcasts,
+  getChannelBroadcasts,
   SET_USER,
   setUser,
   SET_ERRORS,
@@ -36,11 +36,11 @@ describe('fetchChannelNames', () => {
 
 // ==========================================================================
 describe('getChannelNames', () => {
-  xit('Should dispatch fetchChannelNames', () => {
+  it('Should dispatch fetchChannelNames', () => {
     const names = [{}];
 
     global.fetch = jest.fn().mockImplementation(() => {
-      Promise.resolve({
+      return Promise.resolve({
         ok: true,
         json() {
           return names;
@@ -50,7 +50,7 @@ describe('getChannelNames', () => {
 
     const dispatch = jest.fn();
     return getChannelNames()(dispatch).then(() => {
-      expect(fetch).toHaveBeenCalledWith('/channel-names');
+      expect(fetch).toHaveBeenCalledWith(process.env.REACT_APP_ROOT_URL + '/channel-names', {credentials: 'include'});
       expect(dispatch).toHaveBeenCalledWith(fetchChannelNames(names));
     });
   });
@@ -68,11 +68,11 @@ describe('fetchLiveBroadcasts', () => {
 
 // ==========================================================================
 describe('getLiveBroadcasts', () => {
-  xit('Should dispatch fetchLiveBroadcasts', () => {
+  it('Should dispatch fetchLiveBroadcasts', () => {
     const broadcasts = ['broadcast'];
 
     global.fetch = jest.fn().mockImplementation(() => {
-      Promise.resolve({
+      return Promise.resolve({
         ok: true,
         json() {
           return broadcasts;
@@ -82,7 +82,7 @@ describe('getLiveBroadcasts', () => {
 
     const dispatch = jest.fn();
     return getLiveBroadcasts()(dispatch).then(() => {
-      expect(fetch).toHaveBeenCalledWith('/live');
+      expect(fetch).toHaveBeenCalledWith(process.env.REACT_APP_ROOT_URL + '/live', {credentials: 'include'});
       expect(dispatch).toHaveBeenCalledWith(fetchLiveBroadcasts(broadcasts));
     });
   });
@@ -109,15 +109,25 @@ describe('setNextPageToken', () => {
 });
 
 // ==========================================================================
-describe('getChanneBroadcasts', () => {
-  xit('Should dispatch fetchChannelBroadcasts and setNextPageToken', () => {
+describe('getChannelBroadcasts', () => {
+  it('Should dispatch fetchChannelBroadcasts and setNextPageToken', () => {
     const data = {
-      broadcasts: [broadcasts],
-      pageToken: 'page token'
+      items: ['broadcasts'],
+      nextPageToken: 'page token'
     };
 
+    const url = process.env.REACT_APP_ROOT_URL + '/channel-videos';
+    const request = new Request(url, {
+      method: 'POST',
+      body: '{}',
+      headers: {
+        "Content-Type": "application/json",
+      },
+      credentials: 'include'
+    });
+
     global.fetch = jest.fn().mockImplementation(() => {
-      Promise.resolve({
+      return Promise.resolve({
         ok: true,
         json() {
           return data;
@@ -126,10 +136,10 @@ describe('getChanneBroadcasts', () => {
     });
 
     const dispatch= jest.fn();
-    return getChanneBroadcasts()(dispatch).then(() => {
-      expect(dispatch).toHaveBeenCalledWith('/channel-videos');
-      expect(dispatch).toHaveBeenCalledWith(fetchChannelBroadcasts(data.broadcasts));
-      expect(dispatch).toHaveBeenCalledWith(setNextPageToken(data.pageToken));
+    return getChannelBroadcasts()(dispatch).then(() => {
+      expect(fetch).toHaveBeenCalledWith(request);
+      expect(dispatch).toHaveBeenCalledWith(fetchChannelBroadcasts(data.items));
+      expect(dispatch).toHaveBeenCalledWith(setNextPageToken(data.nextPageToken));
     });
   });
 });
@@ -156,11 +166,11 @@ describe('setErrors', () => {
 
 // ==========================================================================
 describe('registerNewUser success', () => {
-  xit('Should dispatch setUser', () => {
+  it('Should dispatch setUser', () => {
     const user = 'newUser';
 
     global.fetch = jest.fn().mockImplementation(() => {
-      Promise.resolve({
+      return Promise.resolve({
         ok: true,
         json() {
           return user;
@@ -168,9 +178,19 @@ describe('registerNewUser success', () => {
       });
     });
 
+    const url = process.env.REACT_APP_ROOT_URL + '/register';
+    const request = new Request(url, {
+      method: 'POST',
+      body: undefined,
+      headers: {
+        "Content-Type": "application/json"
+      },
+      credentials: 'include'
+    });
+
     const dispatch= jest.fn();
     return registerNewUser()(dispatch).then(() => {
-      expect(dispatch).toHaveBeenCalledWith('/register');
+      expect(fetch).toHaveBeenCalledWith(request);
       expect(dispatch).toHaveBeenCalledWith(setUser(user));
     });
   });
@@ -182,7 +202,7 @@ describe('registerNewUser error', () => {
     const errors = ['errors'];
 
     global.fetch = jest.fn().mockImplementation(() => {
-      Promise.resolve({
+      return Promise.resolve({
         ok: false,
         json() {
           return errors;
@@ -190,9 +210,19 @@ describe('registerNewUser error', () => {
       });
     });
 
+    const url = process.env.REACT_APP_ROOT_URL + '/register';
+    const request = new Request(url, {
+      method: 'POST',
+      body: undefined,
+      headers: {
+        "Content-Type": "application/json"
+      },
+      credentials: 'include'
+    });
+
     const dispatch= jest.fn();
     return registerNewUser()(dispatch).then(() => {
-      expect(dispatch).toHaveBeenCalledWith('/register');
+      expect(fetch).toHaveBeenCalledWith(request);
       expect(dispatch).toHaveBeenCalledWith(setErrors(errors));
     });
   });
@@ -204,7 +234,7 @@ describe('userLogIn success', () => {
     const user = 'user';
 
     global.fetch = jest.fn().mockImplementation(() => {
-      Promise.resolve({
+      return Promise.resolve({
         ok: true,
         json() {
           return user;
@@ -212,9 +242,19 @@ describe('userLogIn success', () => {
       });
     });
 
+    const url = process.env.REACT_APP_ROOT_URL + '/login';
+    const request = new Request(url, {
+      method: 'POST',
+      body: undefined,
+      headers: {
+        "Content-Type": "application/json",
+      },
+      credentials: 'include'
+    });
+
     const dispatch= jest.fn();
     return userLogIn()(dispatch).then(() => {
-      expect(dispatch).toHaveBeenCalledWith('/login');
+      expect(fetch).toHaveBeenCalledWith(request);
       expect(dispatch).toHaveBeenCalledWith(setUser(user));
     });
   });
@@ -226,17 +266,27 @@ describe('userLogIn error', () => {
     const errors = ['errors'];
 
     global.fetch = jest.fn().mockImplementation(() => {
-      Promise.resolve({
+      return Promise.resolve({
         ok: true,
         json() {
-          return user;
+          return errors;
         }
       });
     });
 
+    const url = process.env.REACT_APP_ROOT_URL + '/login';
+    const request = new Request(url, {
+      method: 'POST',
+      body: undefined,
+      headers: {
+        "Content-Type": "application/json",
+      },
+      credentials: 'include'
+    });
+
     const dispatch= jest.fn();
     return userLogIn()(dispatch).then(() => {
-      expect(dispatch).toHaveBeenCalledWith('/register');
+      expect(fetch).toHaveBeenCalledWith(request);
       expect(dispatch).toHaveBeenCalledWith(setErrors(errors));
     });
   });
@@ -244,11 +294,11 @@ describe('userLogIn error', () => {
 
 // ==========================================================================
 describe('logoutUser', () => {
-  xit('Should dispatch setUser', () => {
-    const user = 'user';
+  it('Should dispatch setUser', () => {
+    const user = null;
 
     global.fetch = jest.fn().mockImplementation(() => {
-      Promise.resolve({
+      return Promise.resolve({
         ok: true,
         json() {
           return user;
@@ -256,9 +306,14 @@ describe('logoutUser', () => {
       });
     });
 
+    const url = process.env.REACT_APP_ROOT_URL + '/logout'; 
+    const request = new Request(url, {
+      credentials: 'include'
+    }) ;
+
     const dispatch= jest.fn();
     return logoutUser()(dispatch).then(() => {
-      expect(dispatch).toHaveBeenCalledWith('/logout');
+      expect(fetch).toHaveBeenCalledWith(request);
       expect(dispatch).toHaveBeenCalledWith(setUser(user));
     });
   });
@@ -276,11 +331,11 @@ describe('addFavoriteChanneToState', () => {
 
 // ==========================================================================
 describe('addFavoriteChannel', () => {
-  xit('Should dispatch addFavoriteChanneToState', () => {
+  it('Should dispatch addFavoriteChanneToState', () => {
     const channel = 'channel';
 
     global.fetch = jest.fn().mockImplementation(() => {
-      Promise.resolve({
+      return Promise.resolve({
         ok: true,
         json() {
           return channel;
@@ -288,9 +343,19 @@ describe('addFavoriteChannel', () => {
       });
     });
 
+    const url = process.env.REACT_APP_ROOT_URL + '/favorite-channel';
+    const request = new Request(url, {
+      method: 'POST',
+      body: '{}',
+      headers: {
+        "Content-Type": "application/json"
+      },
+      credentials: 'include'
+    });
+
     const dispatch= jest.fn();
     return addFavoriteChannel()(dispatch).then(() => {
-      expect(dispatch).toHaveBeenCalledWith('/favorite-channel');
+      expect(fetch).toHaveBeenCalledWith(request);
       expect(dispatch).toHaveBeenCalledWith(addFavoriteChannelToState(channel));
     });
   });
@@ -308,11 +373,11 @@ describe('removeFavoriteChannel', () => {
 
 // ==========================================================================
 describe('unFavoriteChannel', () => {
-  xit('Should dispatch removeFavoriteChannel', () => {
+  it('Should dispatch removeFavoriteChannel', () => {
     const channel = 'channel';
 
     global.fetch = jest.fn().mockImplementation(() => {
-      Promise.resolve({
+      return Promise.resolve({
         ok: true,
         json() {
           return channel;
@@ -320,9 +385,19 @@ describe('unFavoriteChannel', () => {
       });
     });
 
+    const url = process.env.REACT_APP_ROOT_URL + '/remove-channel';
+    const request = new Request(url, {
+      method: 'POST',
+      body: '{}',
+      headers: {
+        "Content-Type": "application/json"
+      },
+      credentials: 'include'
+    });
+
     const dispatch= jest.fn();
     return unFavoriteChannel()(dispatch).then(() => {
-      expect(dispatch).toHaveBeenCalledWith('/favorite-channel');
+      expect(fetch).toHaveBeenCalledWith(request);
       expect(dispatch).toHaveBeenCalledWith(removeFavoriteChannel(channel));
     });
   });

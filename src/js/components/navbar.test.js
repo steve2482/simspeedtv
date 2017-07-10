@@ -17,7 +17,8 @@ describe('<Navbar />', () => {
     nextPageToken: null,
     user: '',
     errors: null 
-  }
+  };
+
   let wrapper;
 
   beforeEach(() => {
@@ -39,5 +40,15 @@ describe('<Navbar />', () => {
     };
     wrapper = shallow(<Navbar state={state}/>);
     expect(wrapper.find('.nav-buttons').children()).to.have.length(1);
+  });
+
+  xit('Dispatches toggleMenu when menu button is clicked', () => {
+    const dispatch = jest.fn();
+    wrapper = shallow(<Navbar dispatch={dispatch} state={state} />);
+    wrapper.find('.menu').simulate('click', {
+      preventDefault() {}
+    });
+    // expect(dispatch).toHaveBeenCalled();
+    expect(dispatch.mock.calls[0][0]).to.equal(toggleMenu());
   });
 });

@@ -11,7 +11,6 @@ export const getChannelNames = () => dispatch => {
   return fetch(url, {
     credentials: 'include'})
   .then(response => {
-    console.log(response);
     if (!response.ok) {
       const error = new Error('Something went wrong while fetching channel names');
       console.log(error);
@@ -19,7 +18,6 @@ export const getChannelNames = () => dispatch => {
     return response.json();
   })
   .then(data => {
-    console.log(data);
     dispatch(fetchChannelNames(data));
   })
   .catch(error => console.log(error));
@@ -128,19 +126,15 @@ export const registerNewUser = (newUser, history) => dispatch => {
       console.log(error);
       response.json()
       .then(response => {
-        dispatch(setErrors(response))
-      })      
+        dispatch(setErrors(response));
+      });      
     }
-    else {
-      response.json()
-      .then(response => {
-        dispatch(setUser(response))
-      })      
-      .then(() =>
-        history.push('/')
-      );
-    }
+    return response.json();
   })
+  .then(response => {
+    dispatch(setUser(response));
+  })
+  .then(() => history.push('/'))
   .catch(error => console.log(error));  
 };
 
@@ -163,13 +157,13 @@ export const userLogIn = (user, history) => dispatch => {
       console.log(error);
       response.json()
       .then(response => {
-        dispatch(setErrors(response))
-      })
+        dispatch(setErrors(response));
+      });
     }
     else {
       response.json()
       .then(response => {
-        dispatch(setUser(response))
+        dispatch(setUser(response));
       })
       .then(() => {
         history.push('/');
