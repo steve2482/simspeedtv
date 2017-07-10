@@ -15,9 +15,8 @@ export const getChannelNames = () => dispatch => {
       const error = new Error('Something went wrong while fetching channel names');
       console.log(error);
     }
-    return response;
+    return response.json();
   })
-  .then(response => response.json())
   .then(data => {
     dispatch(fetchChannelNames(data));
   })
@@ -127,19 +126,15 @@ export const registerNewUser = (newUser, history) => dispatch => {
       console.log(error);
       response.json()
       .then(response => {
-        dispatch(setErrors(response))
-      })      
+        dispatch(setErrors(response));
+      });      
     }
-    else {
-      response.json()
-      .then(response => {
-        dispatch(setUser(response))
-      })      
-      .then(() =>
-        history.push('/')
-      );
-    }
+    return response.json();
   })
+  .then(response => {
+    dispatch(setUser(response));
+  })
+  .then(() => history.push('/'))
   .catch(error => console.log(error));  
 };
 
@@ -162,13 +157,13 @@ export const userLogIn = (user, history) => dispatch => {
       console.log(error);
       response.json()
       .then(response => {
-        dispatch(setErrors(response))
-      })
+        dispatch(setErrors(response));
+      });
     }
     else {
       response.json()
       .then(response => {
-        dispatch(setUser(response))
+        dispatch(setUser(response));
       })
       .then(() => {
         history.push('/');
