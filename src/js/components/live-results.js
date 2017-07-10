@@ -17,7 +17,7 @@ export class LiveResults extends React.Component {
   }
 
   render() {
-    const description = 'Welcome to SimRacerTV. We bring all your favorite simracing broadcasters to one convienent location. Currently, we feature 16 different TV style broadcasters. In the future, we will be including simracing news channels, as well as POV streamers. Enjoy the races!';
+    const description = 'Welcome to SimRacerTV. We bring all your favorite simracing broadcasters to one convienent location. Currently, we feature 19 different TV style broadcasters. In the future, we will be including simracing news channels, as well as POV streamers. Enjoy the races!';
     const userFeaturesDescription = 'User registration is not needed to to use the application, though if you do, you will be able to favorite channels, making them easier to find the next time you visit.';
     let message = 'Watch a live broadcast or choose your favorite channel from the channel guide to view past broadcasts.';
     let numberOfBroadcasts = 0;
