@@ -15,11 +15,36 @@ export const getChannelNames = () => dispatch => {
       const error = new Error('Something went wrong while fetching channel names');
       console.log(error);
     }
+    return response.json();
+  })
+  .then(data => {
+    dispatch(fetchChannelNames(data));
+  })
+  .catch(error => console.log(error));
+};
+
+// Fetch Upcoming Broadcasts
+export const FETCH_UPCOMING_BROADCASTS = 'FETCH_UPCOMING_BROADCASTS';
+export const fetchUpcomingBroadcasts = broadcasts => ({
+  type: FETCH_UPCOMING_BROADCASTS,
+  broadcasts
+});
+
+// Get Upcoming Broadcasts
+export const getUpcomingBroadcasts = () => dispatch => {
+  const url = process.env.REACT_APP_ROOT_URL + '/upcoming';
+  return fetch(url, {
+    credentials: 'include'})
+  .then(response => {
+    if (!response.ok) {
+      const error = new Error('Something went wrong while fetching upcoming broadcast');
+      console.log(error);
+    }
     return response;
   })
   .then(response => response.json())
   .then(data => {
-    dispatch(fetchChannelNames(data));
+    dispatch(fetchUpcomingBroadcasts(data));
   })
   .catch(error => console.log(error));
 };
@@ -127,19 +152,15 @@ export const registerNewUser = (newUser, history) => dispatch => {
       console.log(error);
       response.json()
       .then(response => {
-        dispatch(setErrors(response))
-      })      
+        dispatch(setErrors(response));
+      });      
     }
-    else {
-      response.json()
-      .then(response => {
-        dispatch(setUser(response))
-      })      
-      .then(() =>
-        history.push('/')
-      );
-    }
+    return response.json();
   })
+  .then(response => {
+    dispatch(setUser(response));
+  })
+  .then(() => history.push('/'))
   .catch(error => console.log(error));  
 };
 
@@ -162,13 +183,13 @@ export const userLogIn = (user, history) => dispatch => {
       console.log(error);
       response.json()
       .then(response => {
-        dispatch(setErrors(response))
-      })
+        dispatch(setErrors(response));
+      });
     }
     else {
       response.json()
       .then(response => {
-        dispatch(setUser(response))
+        dispatch(setUser(response));
       })
       .then(() => {
         history.push('/');
