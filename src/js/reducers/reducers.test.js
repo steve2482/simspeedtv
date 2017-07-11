@@ -26,6 +26,7 @@ describe('simSpeedReducer', () => {
     const state = simSpeedReducer(undefined, {type: '__UNKNOWN'});
     expect(state).toEqual({
       channelNames: [],
+      upcomingBroadcasts: [],
       liveBroadcasts: [],
       channelVideos: [],
       nextPageToken: null,
@@ -47,6 +48,7 @@ describe('simSpeedReducer', () => {
       state = simSpeedReducer(state, fetchChannelNames(channelNames));
       expect(state).toEqual({
         channelNames: ['channel 1', 'channel 2'],
+        upcomingBroadcasts: [],
         liveBroadcasts: [],
         channelVideos: [],
         nextPageToken: null,
@@ -63,6 +65,7 @@ describe('simSpeedReducer', () => {
       state = simSpeedReducer(state, fetchLiveBroadcasts(broadcasts));
       expect(state).toEqual({
         channelNames: [],
+        upcomingBroadcasts: [],
         liveBroadcasts: ['broadcast 1', 'broadcast 2'],
         channelVideos: [],
         nextPageToken: null,
@@ -79,6 +82,7 @@ describe('simSpeedReducer', () => {
       state = simSpeedReducer(state, fetchChannelBroadcasts(broadcasts));
       expect(state).toEqual({
         channelNames: [],
+        upcomingBroadcasts: [],
         liveBroadcasts: [],
         channelVideos: ['broadcast 1', 'broadcast 2'],
         nextPageToken: null,
@@ -95,6 +99,7 @@ describe('simSpeedReducer', () => {
       state = simSpeedReducer(state, setNextPageToken(pageToken));
       expect(state).toEqual({
         channelNames: [],
+        upcomingBroadcasts: [],
         liveBroadcasts: [],
         channelVideos: [],
         nextPageToken: pageToken,
@@ -111,6 +116,7 @@ describe('simSpeedReducer', () => {
       state = simSpeedReducer(state, setUser(user));
       expect(state).toEqual({
         channelNames: [],
+        upcomingBroadcasts: [],
         liveBroadcasts: [],
         channelVideos: [],
         nextPageToken: null,
@@ -127,6 +133,7 @@ describe('simSpeedReducer', () => {
       state = simSpeedReducer(state, setErrors(error));
       expect(state).toEqual({
         channelNames: [],
+        upcomingBroadcasts: [],
         liveBroadcasts: [],
         channelVideos: [],
         nextPageToken: null,

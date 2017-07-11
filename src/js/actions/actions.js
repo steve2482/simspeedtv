@@ -23,6 +23,32 @@ export const getChannelNames = () => dispatch => {
   .catch(error => console.log(error));
 };
 
+// Fetch Upcoming Broadcasts
+export const FETCH_UPCOMING_BROADCASTS = 'FETCH_UPCOMING_BROADCASTS';
+export const fetchUpcomingBroadcasts = broadcasts => ({
+  type: FETCH_UPCOMING_BROADCASTS,
+  broadcasts
+});
+
+// Get Upcoming Broadcasts
+export const getUpcomingBroadcasts = () => dispatch => {
+  const url = process.env.REACT_APP_ROOT_URL + '/upcoming';
+  return fetch(url, {
+    credentials: 'include'})
+  .then(response => {
+    if (!response.ok) {
+      const error = new Error('Something went wrong while fetching upcoming broadcast');
+      console.log(error);
+    }
+    return response;
+  })
+  .then(response => response.json())
+  .then(data => {
+    dispatch(fetchUpcomingBroadcasts(data));
+  })
+  .catch(error => console.log(error));
+};
+
 // Fetch Live Broadcasts Action
 export const FETCH_LIVE_BROADCASTS = 'FETCH_LIVE_BROADCASTS';
 export const fetchLiveBroadcasts = broadcasts => ({

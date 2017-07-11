@@ -9,6 +9,7 @@ let showMenu = width >= 1150 ? true : false;
 
 const appState = {
   channelNames: [],
+  upcomingBroadcasts: [],
   liveBroadcasts: [],
   channelVideos: [],
   nextPageToken: null,
@@ -21,6 +22,11 @@ export const simSpeedReducer = (state=appState, action) => {
   // Channel Names Reducer
   if (action.type === actions.FETCH_CHANNEL_NAMES) {
     const newAppState = update(state, {channelNames: {$set: action.names}});
+    return newAppState;
+  }
+  // Upcoming Broadcast Reducer
+  if (action.type === actions.FETCH_UPCOMING_BROADCASTS) {
+    const newAppState = update(state, {upcomingBroadcasts: {$set: action.broadcasts}});
     return newAppState;
   }
   // Live Broadcasts Reducer

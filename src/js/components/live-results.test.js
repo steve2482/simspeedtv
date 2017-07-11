@@ -12,6 +12,7 @@ import {LiveResults} from './live-results';
 describe('<LiveResults />', () => {
   let state = {
     channelNames: [],
+    upcomingBroadcasts: [],
     liveBroadcasts: [],
     channelVideos: [],
     nextPageToken: null,
@@ -29,8 +30,8 @@ describe('<LiveResults />', () => {
   });
 
   it('Should render message of no current live results if none', () => {
-    expect(wrapper.children()).to.have.length(2);
-    expect(wrapper.children('.text-box').children()).to.have.length(4);
+    expect(wrapper.children()).to.have.length(4);
+    expect(wrapper.children('.text-box').children()).to.have.length(5);
     expect(wrapper.find('.message').text()).to.equal('There are currently no races being broadcast live. Live broadcasts typically occur nights and weekends. Choose a channel from the channel guide to see previously broadcast races.');
   });
 
