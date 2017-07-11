@@ -88,6 +88,11 @@ a {
   width: 95%;
 }
 
+.upcoming-broadcasts {
+  margin-top: 20px;
+  border-top: solid #182F5B;
+}
+
 .line {
   border-top: solid #182F5B;
 }
