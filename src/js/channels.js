@@ -112,3 +112,9 @@
     youtubeId: 'UCPEcqkRG-kf2Vk6Rn_2WZSQ',
     favorites: 0
   }
+  {
+    abreviatedName: 'APR',
+    name: 'All Pro Broadcasting',
+    youtubeId: 'UCd8brfaO1Rmf2sk9r7xhaHw',
+    favorites: 0
+  }
