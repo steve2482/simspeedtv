@@ -73,7 +73,43 @@ export const getLiveBroadcasts = () => dispatch => {
     dispatch(fetchLiveBroadcasts(data));
   })
   .catch(error => console.log(error));
-}
+};
+
+// Fetch Upcoming Channel Broadcasts
+export const FETCH_UPCOMING_CHANNEL_BROADCASTS = 'FETCH_UPCOMING_CHANNEL_BROADCASTS';
+export const fetchUpcomingChannelBroadcasts = broadcasts => ({
+  type: FETCH_UPCOMING_CHANNEL_BROADCASTS,
+  broadcasts
+});
+
+// Get Upcoming Channel Broadcasts for Channel Page
+export const getUpcomingChannelBroadcasts = (channelName) => dispatch => {
+  const url = process.env.REACT_APP_ROOT_URL + '/channel-upcoming';
+  const payload = JSON.stringify({
+    channelName: channelName
+  });
+  const request = new Request(url, {
+    method: 'POST',
+    body: payload,
+    headers: {
+      "Content-Type": "application/json",
+    },
+    credentials: 'include'
+  });
+  return fetch(request)
+  .then(response => {
+    if (!response.ok) {
+      const error = new Error('Something went wrong while fetching upcoming channel videos');
+      console.log(error);
+    }
+    return response;
+  })
+  .then(response => response.json())
+  .then(data => {
+    dispatch(fetchUpcomingChannelBroadcasts(data));
+  })
+  .catch(error => console.log(error));
+};
 
 // Fetch Channel Broadcasts
 export const FETCH_CHANNEL_BROADCASTS = 'FETCH_CHANNEL_BROADCASTS';
