@@ -6,12 +6,14 @@ export default function Video(props) {
   if (props.upcomingInfo) {
     let video = props.upcomingInfo;
     let src = video.thumbnail;
+    let gmtDate = video.date;
+    let date = new Date(gmtDate);
     return (
       <Link id='video-info' to={'/video/' + video.videoId}>
         <img id='video-thumbnail' width='320' height='180' src={src} alt={video.title} />
         <h4 id='channel-title'>{video.channelTitle}</h4>
         <p id='video-title'>{video.title}</p>
-        <p id='date'>{video.date}</p>
+        <p id='date'>{date.toLocaleString()}</p>
       </Link>
     );
   } else {
