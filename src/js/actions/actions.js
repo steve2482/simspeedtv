@@ -49,7 +49,7 @@ export const getUpcomingBroadcasts = () => dispatch => {
   .catch(error => console.log(error));
 };
 
-// Fetch Live Broadcasts Action
+// Fetch Live Broadcasts
 export const FETCH_LIVE_BROADCASTS = 'FETCH_LIVE_BROADCASTS';
 export const fetchLiveBroadcasts = broadcasts => ({
   type: FETCH_LIVE_BROADCASTS,
@@ -71,6 +71,51 @@ export const getLiveBroadcasts = () => dispatch => {
   .then(response => response.json())
   .then(data => {
     dispatch(fetchLiveBroadcasts(data));
+  })
+  .catch(error => console.log(error));
+};
+
+// Fetch Channel Name
+export const FETCH_CHANNEL_NAME = 'FETCH_CHANNEL_NAME';
+export const fetchChannelName = channelName => ({
+  type: FETCH_CHANNEL_NAME,
+  channelName
+});
+
+// Fetch Channel Banner
+export const FETCH_CHANNEL_BANNER = 'FETCH_CHANNEL_BANNER';
+export const fetchChannelBanner = banner => ({
+  type: FETCH_CHANNEL_BANNER,
+  banner
+});
+
+// Get Channel Info/Banner
+export const getChannelInfo = (channelName) => dispatch => {
+  const url = process.env.REACT_APP_ROOT_URL + '/channel-data';
+  const payload = JSON.stringify({
+    channelName: channelName
+  });
+  const request = new Request(url, {
+    method: 'POST',
+    body: payload,
+    headers: {
+      "Content-Type": "application/json",
+    },
+    credentials: 'include'
+  });
+  return fetch(request)
+  .then(response => {
+    if (!response.ok) {
+      const error = new Error('Something went wrong while fetching channel data');
+      console.log(error);
+    }
+    return response;
+  })
+  .then(response => response.json())
+  .then(data => {
+    console.log(data.banner);
+    dispatch(fetchChannelName(data.channelName));
+    dispatch(fetchChannelBanner(data.channelBanner));
   })
   .catch(error => console.log(error));
 };
