@@ -8,7 +8,6 @@ export default function Video(props) {
     let src = video.thumbnail;
     let gmtDate = video.date;
     let date = new Date(gmtDate);
-    console.log(date.toLocaleString());
     return (
       <Link id='video-info' to={'/video/' + video.videoId}>
         <img id='video-thumbnail' width='320' height='180' src={src} alt={video.title} />
