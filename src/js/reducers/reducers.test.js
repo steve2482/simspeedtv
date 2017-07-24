@@ -28,6 +28,11 @@ describe('simSpeedReducer', () => {
       channelNames: [],
       upcomingBroadcasts: [],
       liveBroadcasts: [],
+      channelInfo: {
+        channelName: '',
+        banner: ''
+      },
+      upcomingChannelBroadcasts: [],
       channelVideos: [],
       nextPageToken: null,
       user: '',
@@ -50,6 +55,11 @@ describe('simSpeedReducer', () => {
         channelNames: ['channel 1', 'channel 2'],
         upcomingBroadcasts: [],
         liveBroadcasts: [],
+        channelInfo: {
+          channelName: '',
+          banner: ''
+        },
+        upcomingChannelBroadcasts: [],
         channelVideos: [],
         nextPageToken: null,
         user: '',
@@ -67,6 +77,11 @@ describe('simSpeedReducer', () => {
         channelNames: [],
         upcomingBroadcasts: [],
         liveBroadcasts: ['broadcast 1', 'broadcast 2'],
+        channelInfo: {
+          channelName: '',
+          banner: ''
+        },
+        upcomingChannelBroadcasts: [],
         channelVideos: [],
         nextPageToken: null,
         user: '',
@@ -84,6 +99,11 @@ describe('simSpeedReducer', () => {
         channelNames: [],
         upcomingBroadcasts: [],
         liveBroadcasts: [],
+        channelInfo: {
+          channelName: '',
+          banner: ''
+        },
+        upcomingChannelBroadcasts: [],
         channelVideos: ['broadcast 1', 'broadcast 2'],
         nextPageToken: null,
         user: '',
@@ -101,6 +121,11 @@ describe('simSpeedReducer', () => {
         channelNames: [],
         upcomingBroadcasts: [],
         liveBroadcasts: [],
+        channelInfo: {
+          channelName: '',
+          banner: ''
+        },
+        upcomingChannelBroadcasts: [],
         channelVideos: [],
         nextPageToken: pageToken,
         user: '',
@@ -118,6 +143,11 @@ describe('simSpeedReducer', () => {
         channelNames: [],
         upcomingBroadcasts: [],
         liveBroadcasts: [],
+        channelInfo: {
+          channelName: '',
+          banner: ''
+        },
+        upcomingChannelBroadcasts: [],
         channelVideos: [],
         nextPageToken: null,
         user: 'user',
@@ -135,6 +165,11 @@ describe('simSpeedReducer', () => {
         channelNames: [],
         upcomingBroadcasts: [],
         liveBroadcasts: [],
+        channelInfo: {
+          channelName: '',
+          banner: ''
+        },
+        upcomingChannelBroadcasts: [],
         channelVideos: [],
         nextPageToken: null,
         user: '',

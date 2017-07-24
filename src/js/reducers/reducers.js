@@ -11,6 +11,11 @@ const appState = {
   channelNames: [],
   upcomingBroadcasts: [],
   liveBroadcasts: [],
+  channelInfo: {
+    channelName: '',
+    banner: ''
+  },
+  upcomingChannelBroadcasts: [],
   channelVideos: [],
   nextPageToken: null,
   user: '',
@@ -32,6 +37,21 @@ export const simSpeedReducer = (state=appState, action) => {
   // Live Broadcasts Reducer
   if (action.type === actions.FETCH_LIVE_BROADCASTS) {
     const newAppState = update(state, {liveBroadcasts: {$set: action.broadcasts}});
+    return newAppState;
+  }
+  // Channel Name Reducer
+  if (action.type === actions.FETCH_CHANNEL_NAME) {
+    const newAppState = update(state, {channelInfo: {channelName: {$set: action.channelName}}});
+    return newAppState;
+  }
+  // Channel Banner Reducer
+  if (action.type === actions.FETCH_CHANNEL_BANNER) {
+    const newAppState = update(state, {channelInfo: {banner: {$set: action.banner}}});
+    return newAppState;
+  }
+  // Upcoming Channel Broadcast Reducer
+  if (action.type === actions.FETCH_UPCOMING_CHANNEL_BROADCASTS) {
+    const newAppState = update(state, {upcomingChannelBroadcasts: {$set: action.broadcasts}});
     return newAppState;
   }
   // Channel Videos Reducer
