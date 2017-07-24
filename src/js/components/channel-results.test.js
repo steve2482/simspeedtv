@@ -18,6 +18,7 @@ describe('<ChannelResults />', () => {
     state: {
       channelNames: [],
       liveBroadcasts: [],
+      upcomingChannelBroadcasts: [],
       channelVideos: [],
       nextPageToken: null,
       user: '',
