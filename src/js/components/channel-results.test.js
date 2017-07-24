@@ -18,6 +18,10 @@ describe('<ChannelResults />', () => {
     state: {
       channelNames: [],
       liveBroadcasts: [],
+      channelInfo: {
+        channelName: '',
+        banner: ''
+      },
       upcomingChannelBroadcasts: [],
       channelVideos: [],
       nextPageToken: null,
