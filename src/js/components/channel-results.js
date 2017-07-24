@@ -17,12 +17,19 @@ export class ChannelResults extends React.Component {
     this.props.dispatch(
       actions.getChannelBroadcasts(this.props.match.params.channelName)
     );
+    this.props.dispatch(
+      actions.getUpcomingChannelBroadcasts(this.props.match.params.channelName)
+    );
   }
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.match.params.channelName !== this.props.match.params.channelName) {
       this.props.dispatch(
-        actions.getChannelBroadcasts(nextProps.match.params.channelName));
+        actions.getChannelBroadcasts(nextProps.match.params.channelName)
+        );
+      this.props.dispatch(
+      actions.getUpcomingChannelBroadcasts(nextProps.match.params.channelName)
+      );
     }
   }
 
@@ -50,15 +57,27 @@ export class ChannelResults extends React.Component {
   }
 
   render() {
-    // List out Channel Names
+    // Build video lists
     const channelName = this.props.match.params.channelName;
     const videos = this.props.state.channelVideos.map((eachVideo, index) => {
-    const video = eachVideo;
+      const video = eachVideo;
       return (
         <Video key={index} info={video}/>
       );
     });
 
+    let upcomingVideos;
+    if (this.props.state.upcomingChannelBroadcasts.length > 0) {
+      upcomingVideos = this.props.state.upcomingChannelBroadcasts.map((eachVideo, index) => {
+        const video = eachVideo;
+        return (
+          <Video key={index} upcomingInfo={video}/>
+        );
+      });
+    } else {
+      upcomingVideos = 'We\'re sorry, this channel has not scheduled any upcoming broadcasts.';
+    }
+    
     const channelFavorites = this.findFavorites(channelName, this.props.state.channelNames);
 
     // If User is a Guest Display This
@@ -67,6 +86,11 @@ export class ChannelResults extends React.Component {
         <div className='channel-results box'>
           <h3 className='channel-header'>{channelName}</h3>
           <p>Favorites:{channelFavorites}</p>
+          <p>Upcoming Broadcasts</p>
+          <div className='video-container line'>
+            {upcomingVideos}
+          </div>
+          <p>Past Broadcasts</p>
           <div className='video-container line'>
             {videos}
           </div>
@@ -82,6 +106,11 @@ export class ChannelResults extends React.Component {
           <h3 className='channel-header'>{channelName}</h3>
           <p>Favorites:{channelFavorites}</p>
           <button className='favorite-button' onClick={this.unFavoriteChannel}>Unfavorite</button>
+          <p>Upcoming Broadcasts</p>
+          <div className='video-container line'>
+            {upcomingVideos}
+          </div>
+          <p>Past Broadcasts</p>
           <div className='video-container line'>
             {videos}
           </div>
@@ -97,6 +126,11 @@ export class ChannelResults extends React.Component {
           <h3>{channelName}</h3>
           <p>Favorites:{channelFavorites}</p>
           <button className='favorite-button' onClick={this.favoriteChannel}>Favorite</button>
+          <p>Upcoming Broadcasts</p>
+          <div className='video-container line'>
+            {upcomingVideos}
+          </div>
+          <p>Past Broadcasts</p>
           <div className='video-container line'>
             {videos}
           </div>
