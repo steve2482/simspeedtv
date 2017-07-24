@@ -97,6 +97,13 @@ a {
   border-top: solid #182F5B;
 }
 
+#channel-banner {
+  margin-top: 5px;
+  border-radius: 3px;
+  border: 1px solid black;
+  width: 80%;
+}
+
 .load-more-button {
   width: 100px;
   height: 40px;

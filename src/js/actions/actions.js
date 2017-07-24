@@ -75,11 +75,17 @@ export const getLiveBroadcasts = () => dispatch => {
   .catch(error => console.log(error));
 };
 
-// Fetch Channel Info/Banner
-export const FETCH_CHANNEL_INFO = 'FETCH_CHANNEL_INFO';
-export const fetchChannelInfo = (channelName, banner) => ({
-  type: FETCH_CHANNEL_INFO,
-  channelName,
+// Fetch Channel Name
+export const FETCH_CHANNEL_NAME = 'FETCH_CHANNEL_NAME';
+export const fetchChannelName = channelName => ({
+  type: FETCH_CHANNEL_NAME,
+  channelName
+});
+
+// Fetch Channel Banner
+export const FETCH_CHANNEL_BANNER = 'FETCH_CHANNEL_BANNER';
+export const fetchChannelBanner = banner => ({
+  type: FETCH_CHANNEL_BANNER,
   banner
 });
 
@@ -107,7 +113,9 @@ export const getChannelInfo = (channelName) => dispatch => {
   })
   .then(response => response.json())
   .then(data => {
-    dispatch(fetchChannelInfo(data.channelName, data.banner));
+    console.log(data.banner);
+    dispatch(fetchChannelName(data.channelName));
+    dispatch(fetchChannelBanner(data.channelBanner));
   })
   .catch(error => console.log(error));
 };

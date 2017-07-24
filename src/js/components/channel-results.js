@@ -20,6 +20,9 @@ export class ChannelResults extends React.Component {
     this.props.dispatch(
       actions.getUpcomingChannelBroadcasts(this.props.match.params.channelName)
     );
+    this.props.dispatch(
+      actions.getChannelInfo(this.props.match.params.channelName)
+    );
   }
 
   componentWillReceiveProps(nextProps) {
@@ -28,7 +31,10 @@ export class ChannelResults extends React.Component {
         actions.getChannelBroadcasts(nextProps.match.params.channelName)
         );
       this.props.dispatch(
-      actions.getUpcomingChannelBroadcasts(nextProps.match.params.channelName)
+        actions.getUpcomingChannelBroadcasts(nextProps.match.params.channelName)
+        );
+      this.props.dispatch(
+        actions.getChannelInfo(nextProps.match.params.channelName)
       );
     }
   }
@@ -57,8 +63,10 @@ export class ChannelResults extends React.Component {
   }
 
   render() {
+    // Channel Info
+    const channelName = this.props.state.channelInfo.channelName;
+    const banner = this.props.state.channelInfo.banner;
     // Build video lists
-    const channelName = this.props.match.params.channelName;
     const videos = this.props.state.channelVideos.map((eachVideo, index) => {
       const video = eachVideo;
       return (
@@ -77,15 +85,13 @@ export class ChannelResults extends React.Component {
     } else {
       upcomingVideos = 'We\'re sorry, this channel has not scheduled any upcoming broadcasts.';
     }
-    
-    const channelFavorites = this.findFavorites(channelName, this.props.state.channelNames);
 
     // If User is a Guest Display This
     if (!this.props.state.user) {
       return (
         <div className='channel-results box'>
+          <img id='channel-banner' src={banner} alt={channelName}/>
           <h3 className='channel-header'>{channelName}</h3>
-          <p>Favorites:{channelFavorites}</p>
           <p>Upcoming Broadcasts</p>
           <div className='video-container line'>
             {upcomingVideos}
@@ -103,8 +109,8 @@ export class ChannelResults extends React.Component {
     if (this.props.state.user.favoriteChannels.includes(this.props.match.params.channelName)) {
       return (
         <div className='channel-results box'>
+          <img id='channel-banner' src={banner} alt={channelName}/>
           <h3 className='channel-header'>{channelName}</h3>
-          <p>Favorites:{channelFavorites}</p>
           <button className='favorite-button' onClick={this.unFavoriteChannel}>Unfavorite</button>
           <p>Upcoming Broadcasts</p>
           <div className='video-container line'>
@@ -123,8 +129,8 @@ export class ChannelResults extends React.Component {
     if (this.props.state.user) {
       return (
         <div className='channel-results box'>
+          <img id='channel-banner' src={banner} alt={channelName}/>
           <h3>{channelName}</h3>
-          <p>Favorites:{channelFavorites}</p>
           <button className='favorite-button' onClick={this.favoriteChannel}>Favorite</button>
           <p>Upcoming Broadcasts</p>
           <div className='video-container line'>
