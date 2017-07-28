@@ -71,16 +71,22 @@
   box-shadow: 0 3px #5B171F;
 }
 
-#channel-list-header {
+.channel-list-header {
   -webkit-margin-before: 0;
   -webkit-margin-after: 0;
+  margin: 0 auto 15px;
   margin-bottom: 15px;
   text-align: center;
   clear: left;
   text-shadow: -1px -1px 0 black,
                 1px -1px 0 black,
                 -1px 1px 0 black,
-                1px  1px 0 black; 
+                1px  1px 0 black;
+}
+
+.sub-header {
+  width: 55%;
+  border-bottom: solid #D3374A; 
 }
 
 .channelList {
