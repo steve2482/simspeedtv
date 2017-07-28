@@ -29,7 +29,7 @@ describe('<Sidebar />', () => {
   });
 
   it('Should render channel list only when guest user', () => {
-    expect(wrapper.children('.sidebar').children()).to.have.length(6);
+    expect(wrapper.children('.sidebar').children()).to.have.length(8);
   });
 
   it('Should render channel list and favorites list when user is signed in', ()=> {
@@ -45,7 +45,7 @@ describe('<Sidebar />', () => {
       errors: null      
     };
     wrapper = shallow(<Sidebar state={state}/>);
-    expect(wrapper.children('.sidebar').children()).to.have.length(8);
+    expect(wrapper.children('.sidebar').children()).to.have.length(10);
     expect(wrapper.find('li')).to.have.length(1);
   });
 });
