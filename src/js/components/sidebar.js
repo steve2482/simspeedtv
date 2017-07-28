@@ -65,6 +65,24 @@ export class Sidebar extends React.Component {
       );
     });
 
+    // Filter out POV channels
+    let allPOVChannels = [];
+    for (let i = 0; i < allChannels.length; i++) {
+      if (allChannels[i].type === 'pov') {
+        allPOVChannels.push(allChannels[i]);
+      }
+    }
+
+    // Build POV channel list
+    const POVChannels = allPOVChannels.map((channelId, index) => {
+      const channel = allPOVChannels[index];
+      return (
+        <li key={index}>
+          <Channel key={index} name={channel.abreviatedName} favorites={channel.favorites} />
+        </li>
+      );
+    });
+
     // If User is signed in
     if (this.props.state.user) {
       const favoriteChannels = this.props.state.user.favoriteChannels.map((channel, index) => {
@@ -93,7 +111,11 @@ export class Sidebar extends React.Component {
             <h2 className='channel-list-header sub-header'>Info, News & Reviews</h2>
             <ul className='channelList'>
               {newsChannels}
-            </ul>      
+            </ul>
+            <h2 className='channel-list-header sub-header'>POV Content Creaters</h2>
+            <ul className='channelList'>
+              {POVChannels}
+            </ul>        
           </div>
         </div>
       );
@@ -114,7 +136,11 @@ export class Sidebar extends React.Component {
           <h2 className='channel-list-header sub-header'>Info, News & Reviews</h2>
           <ul className='channelList'>
             {newsChannels}
-          </ul>           
+          </ul>
+          <h2 className='channel-list-header sub-header'>POV Content Creaters</h2>
+          <ul className='channelList'>
+            {POVChannels}
+          </ul>              
         </div>
       </div>
     );
